@@ -43,6 +43,8 @@ kotlin {
                 implementation(libs.sqlDelightCoroutines)
                 implementation(libs.sqlDelightRuntime)
                 implementation(libs.koinCore)
+                implementation(libs.pagingCommon)
+                implementation(libs.pagingCompose)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.components.resources)
             }
