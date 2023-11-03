@@ -1,32 +1,21 @@
 package ru.dinarastepina.nivkh.presentation.paging
 
-import androidx.paging.PagingState
-import app.cash.paging.PagingSource
-import app.cash.paging.PagingSourceLoadResultPage
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.domain.IDictionaryRepository
-import ru.dinarastepina.nivkh.presentation.utils.FIRST_PAGE_INDEX
-import ru.dinarastepina.nivkh.presentation.utils.PAGE_SIZE
+import ru.dinarastepina.nivkh.presentation.base.BasePagingSource
 
 class NivkhPagingSource(
-    private val query: String
-) : PagingSource<Int, NivkhWord>(), KoinComponent {
+    override val query: String
+) : BasePagingSource<NivkhWord>(query), KoinComponent {
 
     private val repository: IDictionaryRepository by inject()
-
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NivkhWord> {
-        val page = params.key ?: FIRST_PAGE_INDEX
-
-        val result = if (query.isEmpty()) repository.getNivkhWords(PAGE_SIZE, page)
-        else repository.searchNivkhWords(PAGE_SIZE, page, query)
-        return PagingSourceLoadResultPage(
-            data = result,
-            prevKey = (page - PAGE_SIZE).takeIf { it >= FIRST_PAGE_INDEX },
-            nextKey = if (result.isNotEmpty()) page + PAGE_SIZE else null
-        )
+    override suspend fun loadAllWords(pageSize: Int, offset: Int): List<NivkhWord> {
+        return repository.getNivkhWords(pageSize, offset)
     }
 
-    override fun getRefreshKey(state: PagingState<Int, NivkhWord>): Int? = null
+    override suspend fun searchWords(pageSize: Int, offset: Int, query: String): List<NivkhWord> {
+        return repository.searchNivkhWords(pageSize, offset, query)
+    }
 }
