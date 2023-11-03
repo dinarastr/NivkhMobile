@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.sqlDelight)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -39,8 +40,8 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.animation)
                 implementation(compose.materialIconsExtended)
-                implementation(libs.ksoup.parser)
-                implementation(libs.rich.editor)
+                implementation(libs.sqlDelightCoroutines)
+                implementation(libs.sqlDelightRuntime)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.components.resources)
             }
@@ -48,12 +49,18 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
-
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation(libs.compose.runtime)
+                implementation(libs.sqlDelightAndroid)
+            }
+        }
+
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.sqlDelightNative)
             }
         }
     }
@@ -72,5 +79,14 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
+}
+
+sqldelight {
+    databases {
+        create("NivkhDatabase") {
+            packageName.set("ru.dinarastepina.database")
+            generateAsync.set(true)
+        }
     }
 }
