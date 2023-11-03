@@ -45,6 +45,9 @@ kotlin {
                 implementation(libs.koinCore)
                 implementation(libs.pagingCommon)
                 implementation(libs.pagingCompose)
+                implementation(libs.voyagerNavigator)
+                implementation(libs.voyagerTabs)
+                implementation(libs.voyagerTransitions)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.components.resources)
             }

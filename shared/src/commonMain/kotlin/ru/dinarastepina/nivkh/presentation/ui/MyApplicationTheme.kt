@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.android
+package ru.dinarastepina.nivkh.presentation.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

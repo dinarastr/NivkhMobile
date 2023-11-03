@@ -11,6 +11,7 @@ sqlDelightVersion = "2.0.0"
 koinVersion = "3.5.0"
 koinAndroidXCompose = "3.5.0"
 paging = "3.3.0-alpha02-0.4.0"
+voyagerVersion = "1.0.0-rc05"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -28,6 +29,9 @@ sqlDelightCoroutines = { module = "app.cash.sqldelight:coroutines-extensions", v
 koinCore = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
 pagingCommon = { module = "app.cash.paging:paging-common", version.ref = "paging" }
 pagingCompose = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
+voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
+voyagerTransitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
+voyagerTabs = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion"}
 
 #android
 sqlDelightAndroid = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion"}
