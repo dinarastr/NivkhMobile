@@ -6,7 +6,7 @@ import app.cash.paging.PagingSourceLoadResultPage
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.models.RussianWord
-import ru.dinarastepina.nivkh.domain.DictionaryRepository
+import ru.dinarastepina.nivkh.domain.IDictionaryRepository
 import ru.dinarastepina.nivkh.presentation.utils.FIRST_PAGE_INDEX
 import ru.dinarastepina.nivkh.presentation.utils.PAGE_SIZE
 
@@ -14,7 +14,7 @@ class RussianPagingSource(
     private val query: String
 ) : PagingSource<Int, RussianWord>(), KoinComponent {
 
-    private val repository: DictionaryRepository by inject()
+    private val repository: IDictionaryRepository by inject()
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RussianWord> {
         val page = params.key ?: FIRST_PAGE_INDEX

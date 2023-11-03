@@ -3,8 +3,8 @@ package ru.dinarastepina.nivkh.di
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import ru.dinarastepina.nivkh.data.repository.DictionaryRepositoryImpl
-import ru.dinarastepina.nivkh.domain.DictionaryRepository
+import ru.dinarastepina.nivkh.domain.IDictionaryRepository
 
 val repositoryModule: Module = module {
-    single<DictionaryRepository> { DictionaryRepositoryImpl() }
+    single<IDictionaryRepository> { DictionaryRepositoryImpl() }
 }

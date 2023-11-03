@@ -5,9 +5,9 @@ import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.local.LocalDataSource
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.data.models.RussianWord
-import ru.dinarastepina.nivkh.domain.DictionaryRepository
+import ru.dinarastepina.nivkh.domain.IDictionaryRepository
 
-class DictionaryRepositoryImpl: DictionaryRepository, KoinComponent {
+class DictionaryRepositoryImpl: IDictionaryRepository, KoinComponent {
 
     private val database: LocalDataSource by inject()
     override suspend fun getNivkhWords(limit: Int, offset: Int): List<NivkhWord> {
