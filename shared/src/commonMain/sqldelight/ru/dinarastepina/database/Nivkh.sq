@@ -10,12 +10,12 @@ SELECT * FROM nivkh_russian
 ORDER BY id LIMIT :limit OFFSET :offset;
 
 searchNivkhTranslations:
-SELECT wordId FROM nivkh_russian WHERE type LIKE 'нивхский' AND (content LIKE :query || '%' OR content LIKE (' ' || :query || '%'))
+SELECT wordId FROM nivkh_russian WHERE type LIKE 'нивхский' AND (content LIKE :query || '%' OR content LIKE ('% ' || :query || '%'))
 ORDER BY id LIMIT :limit OFFSET :offset;
 
 searchNivkhWords:
-SELECT * FROM nivkh_russian WHERE wordId IN :ids
-ORDER BY id LIMIT :limit OFFSET :offset;
+SELECT * FROM nivkh_russian WHERE wordId IN ?
+ORDER BY id;
 
 
 CREATE TABLE IF NOT EXISTS russian_nivkh (
@@ -34,5 +34,5 @@ SELECT wordId FROM russian_nivkh WHERE type LIKE 'русский' AND content LI
 ORDER BY id LIMIT :limit OFFSET :offset;
 
 searchRussianWords:
-SELECT * FROM russian_nivkh WHERE wordId IN :ids
-ORDER BY id LIMIT :limit OFFSET :offset;
+SELECT * FROM russian_nivkh WHERE wordId IN ?
+ORDER BY id;

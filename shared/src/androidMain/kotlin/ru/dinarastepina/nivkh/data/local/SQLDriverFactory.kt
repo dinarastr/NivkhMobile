@@ -10,13 +10,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.resource
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
-//internal actual val cacheModule: Module = module {
-//    singleOf(::AndroidSqlDriverFactory) bind SqlDriverFactory::class
-//}
+internal actual val cacheModule: Module = module {
+    singleOf(::AndroidSqlDriverFactory) bind SqlDriverFactory::class
+}
 class AndroidSqlDriverFactory(private val context: Context): SqlDriverFactory {
     @OptIn(ExperimentalResourceApi::class)
     override suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {

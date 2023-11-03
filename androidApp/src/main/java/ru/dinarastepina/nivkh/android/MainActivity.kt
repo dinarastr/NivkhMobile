@@ -8,7 +8,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.dinarastepina.nivkh.Greeting
 import ru.dinarastepina.nivkh.MainView
 
 class MainActivity : ComponentActivity() {

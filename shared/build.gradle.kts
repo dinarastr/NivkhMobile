@@ -42,6 +42,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(libs.sqlDelightCoroutines)
                 implementation(libs.sqlDelightRuntime)
+                implementation(libs.koinCore)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.components.resources)
             }

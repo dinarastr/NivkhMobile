@@ -6,15 +6,19 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import kotlinx.cinterop.ExperimentalForeignApi
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
 import platform.Foundation.NSApplicationSupportDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.URLByAppendingPathComponent
 
-//internal actual val cacheModule: Module = module {
-//    singleOf(::IosSqlDriverFactory) bind SqlDriverFactory::class
-//}
+internal actual val cacheModule: Module = module {
+    singleOf(::IosSqlDriverFactory) bind SqlDriverFactory::class
+}
 
 class IosSqlDriverFactory : SqlDriverFactory {
     @OptIn(ExperimentalForeignApi::class)
