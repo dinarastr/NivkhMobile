@@ -1,20 +1,10 @@
 package ru.dinarastepina.nivkh.di
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import ru.dinarastepina.nivkh.data.local.cacheModule
+import org.koin.core.module.Module
+import org.koin.dsl.module
+import ru.dinarastepina.nivkh.data.repository.DictionaryRepositoryImpl
+import ru.dinarastepina.nivkh.domain.DictionaryRepository
 
-fun initKoinForAndroid(appDeclaration: KoinAppDeclaration = {}) =
-    startKoin {
-        appDeclaration()
-        modules(
-            appModule(),
-            localModule,
-            cacheModule,
-            localModule,
-            //repositoryModule
-        )
-    }
-
-fun initKoin(enableNetworkLogs: Boolean) =
-    initKoinForAndroid {}
+val repositoryModule: Module = module {
+    single<DictionaryRepository> { DictionaryRepositoryImpl() }
+}

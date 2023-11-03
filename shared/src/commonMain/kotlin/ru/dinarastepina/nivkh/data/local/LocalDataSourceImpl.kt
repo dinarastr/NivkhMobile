@@ -44,12 +44,12 @@ class LocalDataSourceImpl: LocalDataSource, KoinComponent {
     }
 
     override suspend fun searchNivkhWords(
-        ids: List<Int>
+        ids: List<Long>
     ): List<NivkhWord> {
         val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
         return ques
             .searchNivkhWords(
-                ids.map { it.toLong() },
+                ids,
             )
             .executeAsList().map {
             mapToNivkh(
@@ -95,12 +95,12 @@ class LocalDataSourceImpl: LocalDataSource, KoinComponent {
     }
 
     override suspend fun searchRussianWords(
-        ids: List<Int>
+        ids: List<Long>
     ): List<RussianWord> {
         val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
         return ques
             .searchRussianWords(
-                ids.map { it.toLong() },
+                ids,
             )
             .executeAsList().map {
                 mapToRussian(
