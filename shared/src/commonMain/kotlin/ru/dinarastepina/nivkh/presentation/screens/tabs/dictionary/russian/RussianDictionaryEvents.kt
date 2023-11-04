@@ -5,6 +5,6 @@ import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDi
 
 sealed class RussianDictionaryEvents: Events {
     data object LoadWords: RussianDictionaryEvents()
-
     data class SearchWords(val query: String): RussianDictionaryEvents()
+    data object ClearSearch: RussianDictionaryEvents()
 }
