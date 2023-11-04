@@ -6,4 +6,5 @@ sealed class NivkhDictionaryEvents: Events {
     data object LoadWords: NivkhDictionaryEvents()
 
     data class SearchWords(val query: String): NivkhDictionaryEvents()
+    data object ClearSearch: NivkhDictionaryEvents()
 }
