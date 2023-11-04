@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation.screens.dictionary.russian
+package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -7,9 +7,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
-object RussianDictionaryScreen: Screen {
+object NivkhDictionaryScreen: Screen {
     override val key: ScreenKey
-        get() = Tags.RUSSIAN_DICTIONARY_TITLE.tag
+        get() = Tags.NIVKH_DICTIONARY_TITLE.tag
 
     @Composable
     override fun Content() {

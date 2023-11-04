@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation.screens.dictionary.nivkh
+package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh
 
 import ru.dinarastepina.nivkh.presentation.base.Events
 

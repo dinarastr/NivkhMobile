@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation.screens.dictionary.russian
+package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian
 
 import androidx.paging.PagingData
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel

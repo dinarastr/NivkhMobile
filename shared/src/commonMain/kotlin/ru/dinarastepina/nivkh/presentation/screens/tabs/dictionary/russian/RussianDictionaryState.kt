@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation.screens.dictionary.russian
+package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian
 
 import app.cash.paging.PagingData
 import ru.dinarastepina.nivkh.data.models.RussianWord
