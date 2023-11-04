@@ -1,8 +1,5 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -11,6 +8,7 @@ import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import ru.dinarastepina.nivkh.presentation.ui.components.DictionaryContent
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
 object RussianDictionaryScreen: Screen {
@@ -31,26 +29,8 @@ object RussianDictionaryScreen: Screen {
             }
         )
 
-        RussianDictionaryContent(
-            state = state as RussianDictionaryState.LoadedState
+        DictionaryContent(
+            items = (state as RussianDictionaryState.LoadedState).words.collectAsLazyPagingItems()
         )
-    }
-}
-
-@Composable
-fun RussianDictionaryContent(
-    state: RussianDictionaryState.LoadedState
-) {
-    val items = state.words.collectAsLazyPagingItems()
-
-    Scaffold {
-        LazyColumn()  {
-            items(items.itemCount) { position ->
-                val word = items[position]
-                word?.let {
-                    Text(text = it.content.orEmpty())
-                }
-            }
-        }
     }
 }

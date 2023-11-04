@@ -1,6 +1,7 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.LibraryBooks
 import androidx.compose.material.icons.filled.Sailing
 import androidx.compose.runtime.Composable
@@ -23,7 +24,7 @@ object DictionaryTab: Tab {
         @Composable
         get() {
             val title = "Словарь"
-            val icon = rememberVectorPainter(Icons.Default.LibraryBooks)
+            val icon = rememberVectorPainter(Icons.Default.Book)
 
             return remember {
                 TabOptions(
