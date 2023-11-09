@@ -56,12 +56,12 @@ object RussianDictionaryScreen: Screen {
             onEmptySearch = {
                 query.value = ""
                 vm.onEvent(
-                    NivkhDictionaryEvents.ClearSearch
+                    RussianDictionaryEvents.ClearSearch
                 )
             },
             onSearch = {
                 vm.onEvent(
-                    NivkhDictionaryEvents.SearchWords(it)
+                    RussianDictionaryEvents.SearchWords(it)
                 )
             },
             query = query,

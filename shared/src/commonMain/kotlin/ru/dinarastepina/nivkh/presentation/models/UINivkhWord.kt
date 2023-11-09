@@ -47,12 +47,12 @@ fun RussianWord.toArticle(): Article {
         "русский" -> Article.Original(
             this.wordId,
             this.content.orEmpty())
-        "нивхский" -> Article.Translation(
+        "нивх" -> Article.Translation(
             this.wordId,
             this.content.orEmpty())
         "коммент" -> Article.Comment(
             this.wordId,
             this.content.orEmpty())
-        else -> throw IllegalArgumentException("incorrect article type")
+        else -> throw IllegalArgumentException("incorrect article type: $type")
     }
 }
