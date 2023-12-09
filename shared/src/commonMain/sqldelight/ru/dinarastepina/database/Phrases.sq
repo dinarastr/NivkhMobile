@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS phrases (
+    nivkh TEXT NOT NULL,
+    russian TEXT NOT NULL,
+    audio TEXT NOT NULL PRIMARY KEY,
+    topic TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS topics (
+    title TEXT NOT NULL PRIMARY KEY,
+    imageUrl TEXT NOT NULL
+);
+
+getAllTopics:
+SELECT * FROM topics
+;
+
+getPhrasesByTopic:
+SELECT * FROM phrases WHERE topic LIKE :topic;
+
+

@@ -11,7 +11,9 @@ class LocalDataSourceImpl: LocalDataSource, KoinComponent {
     private val db: SqlDriverFactory by inject()
 
     override suspend fun getAllNivkhWords(limit: Int, offset: Int): List<NivkhWord> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
+        val ques = NivkhDatabase(
+            db.getDriver(NivkhDatabase.Schema,
+                "nivkh.db")).nivkhQueries
         return ques
             .selectAllNivkhWords(
                 limit.toLong(),
