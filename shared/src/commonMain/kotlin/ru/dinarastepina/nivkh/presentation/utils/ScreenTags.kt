@@ -5,6 +5,8 @@ enum class Tags(val tag: String) {
     HOME_SCREEN_TITLE("Home"),
     NIVKH_DICTIONARY_TITLE("Nivkh"),
     RUSSIAN_DICTIONARY_TITLE("Russian"),
-    ONBOARDING_TITLE("OnBoardingTopics"),
-    TAB_SCREEN_TITLE("Tabs")
+    SPEAKER_SCREEN_TITLE("Speaker"),
+    TOPICS_SCREEN_TITLE("Topics"),
+    PHRASES_SCREEN_TITLE("Phrases"),
+    ONBOARDING_TITLE("OnBoarding")
 }

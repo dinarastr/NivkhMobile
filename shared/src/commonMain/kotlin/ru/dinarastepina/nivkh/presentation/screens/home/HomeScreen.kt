@@ -18,6 +18,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.DictionaryTab
+import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.SpeakerTab
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
 object HomeScreen: Screen {
@@ -42,6 +43,7 @@ object HomeScreen: Screen {
                        containerColor = MaterialTheme.colorScheme.primary
                    ) {
                        TabNavigationItem(DictionaryTab)
+                       TabNavigationItem(SpeakerTab)
                    }
                }
            )
