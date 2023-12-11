@@ -8,5 +8,6 @@ enum class Tags(val tag: String) {
     SPEAKER_SCREEN_TITLE("Speaker"),
     TOPICS_SCREEN_TITLE("Topics"),
     PHRASES_SCREEN_TITLE("Phrases"),
+    SEARCH_SCREEN_TITLE("Search"),
     ONBOARDING_TITLE("OnBoarding")
 }
