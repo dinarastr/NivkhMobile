@@ -4,7 +4,7 @@ kotlin = "1.9.10"
 compose = "1.5.4"
 compose-compiler = "1.5.3"
 compose-material3 = "1.1.2"
-androidx-activityCompose = "1.8.0"
+androidx-activityCompose = "1.8.1"
 resourcesGenerator = "0.23.0"
 compose-multiplatform = "1.5.10"
 sqlDelightVersion = "2.0.0"
@@ -47,6 +47,7 @@ koinAndroid = { module = "io.insert-koin:koin-android", version.ref = "koinVersi
 koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidXCompose" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore"}
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+composeActivity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
 #ios
 sqlDelightNative = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelightVersion" }

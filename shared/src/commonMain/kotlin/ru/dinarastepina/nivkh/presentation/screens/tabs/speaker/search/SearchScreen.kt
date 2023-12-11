@@ -38,7 +38,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.presentation.models.Phrase
+import ru.dinarastepina.nivkh.presentation.navigation.BackHandler
+import ru.dinarastepina.nivkh.presentation.navigation.OnHomePressed
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases.load
 import ru.dinarastepina.nivkh.presentation.ui.components.EmptyContainer
 import ru.dinarastepina.nivkh.presentation.ui.components.PhraseCard
@@ -220,11 +223,11 @@ object SearchScreen : Screen {
                                     selected.value = phrase
                                     isLoading.value = true
                                     val cached =
-                                        checkIfCached("https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audioUrl}?alt=media")
+                                        checkIfCached("https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media")
                                     load(
                                         isLoading = isLoading,
                                         cached = cached,
-                                        url = "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audioUrl}?alt=media",
+                                        url = "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media",
                                         controller = player,
                                         selected = selected
                                     ) {
@@ -232,7 +235,7 @@ object SearchScreen : Screen {
                                     }
                                     if (cached.not()) {
                                         downloadFile(
-                                            "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audioUrl}?alt=media"
+                                            "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media"
                                         )
                                     }
                                 }

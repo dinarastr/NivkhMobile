@@ -18,12 +18,12 @@ import ru.dinarastepina.nivkh.data.paging.NivkhPagingSource
 import ru.dinarastepina.nivkh.data.paging.RussianPagingSource
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDictionaryState
 
-class RussianDictionaryVM: BaseViewModel<RussianDictionaryState>(
+class RussianDictionaryVM: BaseViewModel<RussianDictionaryState, RussianDictionaryEvents>(
     initialState = RussianDictionaryState.LoadedState(
         words = flowOf(PagingData.empty())
     )
 ) {
-    override fun onEvent(event: Events) {
+    override fun onEvent(event: RussianDictionaryEvents) {
         when (event) {
             is RussianDictionaryEvents.LoadWords -> getAllRussianWords()
             is RussianDictionaryEvents.SearchWords -> searchRussian(event.query)

@@ -15,13 +15,13 @@ import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.models.toArticle
 import ru.dinarastepina.nivkh.data.paging.NivkhPagingSource
 
-class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState>(
+class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState, NivkhDictionaryEvents>(
     initialState = NivkhDictionaryState.LoadedState(
         "",
         flowOf(PagingData.empty())
     )
 ) {
-    override fun onEvent(event: Events) {
+    override fun onEvent(event: NivkhDictionaryEvents) {
         when (event) {
             is NivkhDictionaryEvents.LoadWords -> loadAllWords()
             is NivkhDictionaryEvents.SearchWords -> searchWords(event.query)

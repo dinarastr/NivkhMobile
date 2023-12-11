@@ -55,6 +55,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.compose.runtime)
+                implementation(libs.composeActivity)
                 implementation(libs.sqlDelightAndroid)
                 implementation(libs.datastore)
                 implementation(libs.coreKtx)
