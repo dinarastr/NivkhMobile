@@ -5,7 +5,7 @@ import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.local.LocalDataSource
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.data.models.RussianWord
-import ru.dinarastepina.nivkh.domain.IDictionaryRepository
+import ru.dinarastepina.nivkh.domain.repositories.IDictionaryRepository
 
 class DictionaryRepositoryImpl: IDictionaryRepository, KoinComponent {
 

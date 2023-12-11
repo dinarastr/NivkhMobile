@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import ru.dinarastepina.nivkh.domain.IPhrasesRepository
+import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
-import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
 class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(

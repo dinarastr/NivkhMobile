@@ -3,7 +3,7 @@ package ru.dinarastepina.nivkh.data.paging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.models.NivkhWord
-import ru.dinarastepina.nivkh.domain.IDictionaryRepository
+import ru.dinarastepina.nivkh.domain.repositories.IDictionaryRepository
 import ru.dinarastepina.nivkh.presentation.base.BasePagingSource
 
 class NivkhPagingSource(

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.data.local.PhrasesDataSource
-import ru.dinarastepina.nivkh.domain.IPhrasesRepository
+import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 import ru.dinarastepina.nivkh.presentation.models.Topic
 

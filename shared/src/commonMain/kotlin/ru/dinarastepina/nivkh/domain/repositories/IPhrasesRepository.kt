@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.domain
+package ru.dinarastepina.nivkh.domain.repositories
 
 import kotlinx.coroutines.flow.Flow
 import ru.dinarastepina.nivkh.presentation.models.Phrase

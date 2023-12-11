@@ -56,6 +56,7 @@ kotlin {
             dependencies {
                 implementation(libs.compose.runtime)
                 implementation(libs.sqlDelightAndroid)
+                implementation(libs.datastore)
             }
         }
 

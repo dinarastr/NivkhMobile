@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.domain
+package ru.dinarastepina.nivkh.domain.repositories
 
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.data.models.RussianWord
