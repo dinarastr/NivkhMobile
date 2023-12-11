@@ -1,5 +1,6 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases
 
+import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.presentation.base.State
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
