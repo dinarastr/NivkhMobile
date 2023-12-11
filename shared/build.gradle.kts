@@ -57,6 +57,7 @@ kotlin {
                 implementation(libs.compose.runtime)
                 implementation(libs.sqlDelightAndroid)
                 implementation(libs.datastore)
+                implementation(libs.coreKtx)
             }
         }
 

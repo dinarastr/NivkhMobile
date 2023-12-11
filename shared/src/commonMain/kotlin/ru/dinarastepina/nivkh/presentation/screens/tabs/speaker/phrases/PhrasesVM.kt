@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import ru.dinarastepina.nivkh.domain.downloader.FileManager
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel

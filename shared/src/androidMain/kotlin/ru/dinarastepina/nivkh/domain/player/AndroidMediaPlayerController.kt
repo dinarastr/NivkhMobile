@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.domain.player
 
 import android.content.Context
 import android.media.MediaPlayer
+import androidx.core.net.toUri
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind

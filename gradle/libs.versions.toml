@@ -14,7 +14,10 @@ paging = "3.3.0-alpha02-0.4.0"
 voyagerVersion = "1.0.0-rc05"
 imageLoaderVersion = "1.2.10"
 calfAdaptiveUiVersion = "0.2.0"
+
 dataStore = "1.0.0"
+coreKtx = "1.12.0"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -43,6 +46,7 @@ sqlDelightAndroid = { module = "app.cash.sqldelight:android-driver", version.ref
 koinAndroid = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
 koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidXCompose" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore"}
+coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 
 #ios
 sqlDelightNative = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
