@@ -17,4 +17,8 @@ SELECT * FROM topics
 getPhrasesByTopic:
 SELECT * FROM phrases WHERE topic LIKE :topic;
 
+searchPhrases:
+SELECT * FROM phrases
+WHERE nivkh LIKE ('%' || :query || '%') OR russian LIKE ('%' || :query || '%');
+
 

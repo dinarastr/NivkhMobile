@@ -7,4 +7,6 @@ interface PhrasesDataSource {
     suspend fun getAllTopics(): List<Topic>
 
     suspend fun getPhrasesByTopic(topic: String): List<Phrase>
+
+    suspend fun searchPhrases(query: String): List<Phrase>
 }

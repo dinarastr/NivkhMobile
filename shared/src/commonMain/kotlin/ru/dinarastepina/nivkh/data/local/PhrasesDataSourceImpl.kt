@@ -36,6 +36,20 @@ class PhrasesDataSourceImpl: PhrasesDataSource, KoinComponent {
                 mapToPhrase(it.nivkh, it.russian, it.audio, it.topic)
             }
     }
+
+    override suspend fun searchPhrases(query: String): List<Phrase> {
+        val ques = NivkhDatabase(
+            db.getDriver(
+                NivkhDatabase.Schema,
+                "nivkh.db")).phrasesQueries
+
+        return ques
+            .searchPhrases(query)
+            .executeAsList()
+            .map {
+                mapToPhrase(it.nivkh, it.russian, it.audio, it.topic)
+            }
+    }
 }
 
 fun mapToTopic(title: String, image: String) = Topic(title, image)

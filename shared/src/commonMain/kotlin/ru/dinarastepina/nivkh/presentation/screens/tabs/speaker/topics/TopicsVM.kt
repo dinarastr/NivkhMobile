@@ -11,12 +11,12 @@ import ru.dinarastepina.nivkh.domain.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.base.Events
 
-class TopicsVM: BaseViewModel<TopicsState>(
+class TopicsVM: BaseViewModel<TopicsState, TopicsEvents>(
     initialState = TopicsState.TopicsLoaded()
 ), KoinComponent {
 
     private val repository: IPhrasesRepository by inject()
-    override fun onEvent(event: Events) {
+    override fun onEvent(event: TopicsEvents) {
         when (event) {
             is TopicsEvents.LoadTopics -> loadTopics()
         }

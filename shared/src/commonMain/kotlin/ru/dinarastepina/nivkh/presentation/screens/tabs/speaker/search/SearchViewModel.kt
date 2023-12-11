@@ -1,6 +1,5 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.search
 
-import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -10,9 +9,10 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.domain.IPhrasesRepository
+import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
-class SearchViewModel: StateScreenModel<SearchState>(
+class SearchViewModel: BaseViewModel<SearchState, SearchEvents>(
     SearchState.Empty
 ), KoinComponent {
 
@@ -20,7 +20,7 @@ class SearchViewModel: StateScreenModel<SearchState>(
     private val mediaPlayerController: MediaPlayerController by inject()
     private val fileManager: FileManager by inject()
 
-    fun onEvent(event: SearchEvents) {
+     override fun onEvent(event: SearchEvents) {
         when (event) {
             is SearchEvents.SearchWords -> searchPhrases(event.query)
             is SearchEvents.StartAudio -> startAudio(
@@ -37,13 +37,13 @@ class SearchViewModel: StateScreenModel<SearchState>(
 
     private fun searchPhrases(query: String) {
         coroutineScope.launch(Dispatchers.IO) {
-            repository.searchPhrases(query).collect { result ->
+            repository.searchPhrases(query).collect { phrases ->
                  mutableState.update {
-                        if (result.data.isEmpty()) {
+                        if (phrases.isEmpty()) {
                             SearchState.Empty
                         } else {
                             SearchState.Success(
-                                phrases = result.data,
+                                phrases = phrases,
                                 playerController = mediaPlayerController
                             )
                         }

@@ -8,4 +8,6 @@ interface IPhrasesRepository {
     suspend fun getAllTopics(): Flow<List<Topic>>
 
     suspend fun getPhrasesByTopic(topic: String): Flow<List<Phrase>>
+
+    suspend fun searchPhrases(query: String): Flow<List<Phrase>>
 }

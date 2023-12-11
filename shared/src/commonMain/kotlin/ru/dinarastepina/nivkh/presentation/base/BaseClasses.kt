@@ -8,6 +8,6 @@ interface Events
 
 interface State
 
-abstract class BaseViewModel<T: State>(initialState: T): StateScreenModel<T>(initialState) {
-    abstract fun onEvent(event: Events)
+abstract class BaseViewModel<T: State, in U: Events>(initialState: T): StateScreenModel<T>(initialState) {
+    abstract fun onEvent(event: U)
 }

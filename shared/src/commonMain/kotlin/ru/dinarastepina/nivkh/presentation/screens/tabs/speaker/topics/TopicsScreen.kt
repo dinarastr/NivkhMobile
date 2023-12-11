@@ -30,6 +30,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.dinarastepina.nivkh.presentation.models.Topic
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases.PhrasesScreen
+import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.search.SearchScreen
 import ru.dinarastepina.nivkh.presentation.ui.components.TopicCard
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
@@ -71,8 +72,7 @@ object TopicsScreen : Screen {
                             actions = {
                                 IconButton(
                                     onClick = {
-                                        //todo: add search
-                                        //navigator.push(null)
+                                       navigator.push(SearchScreen)
                                     }
                                 ) {
                                     Icon(Icons.Filled.Search, contentDescription = null)

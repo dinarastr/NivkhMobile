@@ -1,8 +1,9 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.search
 
+import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
-sealed class SearchEvents {
+sealed class SearchEvents: Events {
     data class SearchWords(val query: String) : SearchEvents()
     data class StartAudio(val phrase: Phrase): SearchEvents()
 

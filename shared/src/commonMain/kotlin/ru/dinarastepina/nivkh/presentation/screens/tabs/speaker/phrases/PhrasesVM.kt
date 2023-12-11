@@ -13,7 +13,7 @@ import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
-class PhrasesVM: BaseViewModel<PhrasesState>(
+class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
     initialState = PhrasesState.Loading
 ), KoinComponent {
 
@@ -21,7 +21,7 @@ class PhrasesVM: BaseViewModel<PhrasesState>(
     private val mediaPlayerController: MediaPlayerController by inject()
     private val fileManager: FileManager by inject()
 
-    override fun onEvent(event: Events) {
+    override fun onEvent(event: PhrasesEvents) {
         when (event) {
             is PhrasesEvents.LoadPhrases -> loadPhrases(event.topic)
             is PhrasesEvents.StartAudio -> startAudio(
