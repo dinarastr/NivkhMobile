@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation
+package ru.dinarastepina.nivkh
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.navigator.Navigator

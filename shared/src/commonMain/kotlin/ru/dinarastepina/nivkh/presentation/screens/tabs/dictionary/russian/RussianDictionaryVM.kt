@@ -14,8 +14,8 @@ import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.models.toArticle
-import ru.dinarastepina.nivkh.presentation.paging.NivkhPagingSource
-import ru.dinarastepina.nivkh.presentation.paging.RussianPagingSource
+import ru.dinarastepina.nivkh.data.paging.NivkhPagingSource
+import ru.dinarastepina.nivkh.data.paging.RussianPagingSource
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDictionaryState
 
 class RussianDictionaryVM: BaseViewModel<RussianDictionaryState>(

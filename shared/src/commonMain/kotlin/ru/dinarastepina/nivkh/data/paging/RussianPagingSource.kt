@@ -1,4 +1,4 @@
-package ru.dinarastepina.nivkh.presentation.paging
+package ru.dinarastepina.nivkh.data.paging
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

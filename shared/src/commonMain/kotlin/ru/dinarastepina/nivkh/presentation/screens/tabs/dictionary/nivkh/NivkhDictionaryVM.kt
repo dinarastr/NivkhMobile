@@ -13,7 +13,7 @@ import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.models.toArticle
-import ru.dinarastepina.nivkh.presentation.paging.NivkhPagingSource
+import ru.dinarastepina.nivkh.data.paging.NivkhPagingSource
 
 class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState>(
     initialState = NivkhDictionaryState.LoadedState(
