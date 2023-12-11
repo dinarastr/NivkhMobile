@@ -25,10 +25,11 @@ class TopicsVM: BaseViewModel<TopicsState>(
     private fun loadTopics() {
         coroutineScope.launch(Dispatchers.Default) {
             repository.getAllTopics().collect { topics ->
-            mutableState.update {
-                TopicsState.TopicsLoaded(
-                    topics = topics
-                )
+                mutableState.update {
+                    TopicsState.TopicsLoaded(
+                        topics = topics
+                    )
+                }
             }
         }
     }

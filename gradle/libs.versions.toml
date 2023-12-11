@@ -13,6 +13,7 @@ koinAndroidXCompose = "3.5.0"
 paging = "3.3.0-alpha02-0.4.0"
 voyagerVersion = "1.0.0-rc05"
 imageLoaderVersion = "1.2.10"
+calfAdaptiveUiVersion = "0.2.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -34,6 +35,7 @@ voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.r
 voyagerTransitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 voyagerTabs = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoaderVersion"}
+calfAdaptiveUi = { module = "com.mohamedrejeb.calf:calf-ui", version.ref = "calfAdaptiveUiVersion" }
 
 #android
 sqlDelightAndroid = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
@@ -53,7 +55,8 @@ multiplatform = [
     "voyagerNavigator",
     "voyagerTransitions",
     "voyagerTabs",
-    "imageLoader"
+    "imageLoader",
+    "calfAdaptiveUi"
 ]
 
 [plugins]
