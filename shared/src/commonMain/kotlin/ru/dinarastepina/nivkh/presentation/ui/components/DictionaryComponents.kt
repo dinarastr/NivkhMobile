@@ -77,7 +77,7 @@ fun LanguageChip(
         }
         Text(
             text = title,
-            style = MaterialTheme.typography.bodySmall.copy(
+            style = MaterialTheme.typography.bodyMedium.copy(
                 color = MaterialTheme.colorScheme.onPrimary
             )
         )
