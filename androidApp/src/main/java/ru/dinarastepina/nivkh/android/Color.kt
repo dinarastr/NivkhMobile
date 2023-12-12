@@ -1,13 +1,13 @@
-package ru.dinarastepina.nivkh.presentation.ui.theme
+package ru.dinarastepina.nivkh.android
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFFFFD9E0)
-val md_theme_light_onPrimary = Color(0xFF2D1600)
+val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFD9E0)
-val md_theme_light_onPrimaryContainer = Color(0xFFFFDCBF)
+val md_theme_light_onPrimaryContainer = Color(0xFF3F001A)
 val md_theme_light_secondary = Color(0xFF75565D)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
-val md_theme_light_secondaryContainer = Color(0xFFFFD9E0)
+val md_theme_light_secondaryContainer = Color(0xFF99405C)
 val md_theme_light_onSecondaryContainer = Color(0xFF2B151B)
 val md_theme_light_tertiary = Color(0xFF7B5733)
 val md_theme_light_onTertiary = Color(0xFFFFFFFF)

@@ -85,6 +85,9 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
+dependencies {
+    implementation("androidx.core:core-ktx:+")
+}
 
 sqldelight {
     databases {
