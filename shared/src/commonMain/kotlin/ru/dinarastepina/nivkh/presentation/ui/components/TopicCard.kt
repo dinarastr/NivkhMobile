@@ -64,7 +64,7 @@ fun TopicCard(
                         "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/nivkh%2Fimage%2F$imgUrl?alt=media&token=cb5a8760-c704-4360-a4e6-9f171d97a82e"
                     )
                     Image(
-                        modifier = Modifier.fillMaxHeight().width(80.dp),
+                        modifier = Modifier.fillMaxHeight().width(80.dp).padding(4.dp),
                         painter = painter,
                         contentDescription = title,
                         contentScale = ContentScale.Crop

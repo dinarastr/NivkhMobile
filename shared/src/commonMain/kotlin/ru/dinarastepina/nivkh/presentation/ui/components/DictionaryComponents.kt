@@ -43,13 +43,13 @@ fun LanguageBar(
         FloatingActionButton(
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier.size(40.dp),
-            containerColor = if (buttonPressed) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary,
+            containerColor = if (buttonPressed) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.inversePrimary,
             interactionSource = interactionSource,
             onClick = onChangeLanguageClick,
             content = {
                 Icon(
                     imageVector = Icons.Default.CompareArrows,
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    tint = MaterialTheme.colorScheme.tertiary,
                     contentDescription = null
                 )
             }
