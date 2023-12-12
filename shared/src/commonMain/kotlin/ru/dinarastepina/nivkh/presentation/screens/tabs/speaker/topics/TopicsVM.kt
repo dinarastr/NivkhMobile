@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.topics
 
 import cafe.adriel.voyager.core.model.coroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -29,5 +30,10 @@ class TopicsVM : BaseViewModel<TopicsState, TopicsEvents>(
                 )
             }
         }
+    }
+
+    override fun onDispose() {
+        super.onDispose()
+        coroutineScope.cancel()
     }
 }
