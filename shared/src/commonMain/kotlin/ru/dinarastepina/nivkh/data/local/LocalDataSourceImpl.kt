@@ -6,7 +6,7 @@ import ru.dinarastepina.database.NivkhDatabase
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.data.models.RussianWord
 
-class LocalDataSourceImpl: LocalDataSource, KoinComponent {
+class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
 
     private val db: SqlDriverFactory by inject()
 

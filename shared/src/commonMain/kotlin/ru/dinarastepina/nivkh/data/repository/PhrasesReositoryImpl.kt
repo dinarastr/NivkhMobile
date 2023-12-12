@@ -12,15 +12,12 @@ import ru.dinarastepina.nivkh.presentation.models.Topic
 class PhrasesRepositoryImpl : IPhrasesRepository, KoinComponent {
 
     private val phrasesDataSource: PhrasesDataSource by inject()
-    override suspend fun getAllTopics(): Flow<List<Topic>> = flow {
+    override suspend fun getAllTopics(): List<Topic> =
         phrasesDataSource.getAllTopics()
-    }
 
-    override suspend fun getPhrasesByTopic(topic: String): Flow<List<Phrase>> = flow {
+    override suspend fun getPhrasesByTopic(topic: String): List<Phrase> =
         phrasesDataSource.getPhrasesByTopic(topic)
-    }
 
-    override suspend fun searchPhrases(query: String): Flow<List<Phrase>> = flow{
+    override suspend fun searchPhrases(query: String): List<Phrase> =
         phrasesDataSource.searchPhrases(query)
-    }
 }

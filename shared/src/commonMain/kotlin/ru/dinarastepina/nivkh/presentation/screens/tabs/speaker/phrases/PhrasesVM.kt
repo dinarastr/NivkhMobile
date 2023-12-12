@@ -39,14 +39,12 @@ class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
 
     private fun loadPhrases(topic: String) {
         coroutineScope.launch(Dispatchers.IO) {
-            repository.getPhrasesByTopic(topic).collect { phrases ->
                  mutableState.update {
                         PhrasesState.LoadedPhrases(
-                            phrases = phrases,
+                            phrases = repository.getPhrasesByTopic(topic),
                             playerController = mediaPlayerController
                         )
                     }
-            }
         }
     }
 

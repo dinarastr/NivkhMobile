@@ -14,7 +14,7 @@ import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
-class SearchViewModel: BaseViewModel<SearchState, SearchEvents>(
+class SearchViewModel : BaseViewModel<SearchState, SearchEvents>(
     SearchState.Empty
 ), KoinComponent {
 
@@ -22,16 +22,18 @@ class SearchViewModel: BaseViewModel<SearchState, SearchEvents>(
     private val mediaPlayerController: MediaPlayerController by inject()
     private val fileManager: FileManager by inject()
 
-     override fun onEvent(event: SearchEvents) {
+    override fun onEvent(event: SearchEvents) {
         when (event) {
             is SearchEvents.SearchWords -> searchPhrases(event.query)
             is SearchEvents.StartAudio -> startAudio(
                 state = state.value,
                 phrase = event.phrase
             )
+
             is SearchEvents.StopAudio -> stopAudio(
                 state = state.value
             )
+
             is SearchEvents.CheckIfCached -> check(event.url)
             is SearchEvents.DownloadFile -> downloadFile(event.url)
         }
@@ -39,19 +41,18 @@ class SearchViewModel: BaseViewModel<SearchState, SearchEvents>(
 
     private fun searchPhrases(query: String) {
         coroutineScope.launch(Dispatchers.IO) {
-            repository.searchPhrases(query).collect { phrases ->
-                 mutableState.update {
-                        if (phrases.isEmpty()) {
-                            SearchState.Empty
-                        } else {
-                            SearchState.Success(
-                                phrases = phrases,
-                                playerController = mediaPlayerController
-                            )
-                        }
-                    }
+            val result = repository.searchPhrases(query)
+            mutableState.update {
+                if (result.isEmpty()) {
+                    SearchState.Empty
+                } else {
+                    SearchState.Success(
+                        phrases = result,
+                        playerController = mediaPlayerController
+                    )
                 }
             }
+        }
     }
 
     fun clear() {

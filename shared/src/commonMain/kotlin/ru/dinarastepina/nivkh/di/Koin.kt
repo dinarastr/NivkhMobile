@@ -12,10 +12,11 @@ fun initKoinForAndroid(appDeclaration: KoinAppDeclaration = {}) =
         appDeclaration()
         modules(
             appModule(),
-            localModule,
             cacheModule,
-            localModule,
-            repositoryModule,
+            localDictionaryModule,
+            localPhraseModule,
+            dictionaryRepositoryModule,
+            phraseRepositoryModule,
             dataStoreModule,
             playerModule,
             fileManagerModule

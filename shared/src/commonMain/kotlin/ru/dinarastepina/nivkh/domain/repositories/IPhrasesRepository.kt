@@ -5,9 +5,9 @@ import ru.dinarastepina.nivkh.presentation.models.Phrase
 import ru.dinarastepina.nivkh.presentation.models.Topic
 
 interface IPhrasesRepository {
-    suspend fun getAllTopics(): Flow<List<Topic>>
+    suspend fun getAllTopics(): List<Topic>
 
-    suspend fun getPhrasesByTopic(topic: String): Flow<List<Phrase>>
+    suspend fun getPhrasesByTopic(topic: String): List<Phrase>
 
-    suspend fun searchPhrases(query: String): Flow<List<Phrase>>
+    suspend fun searchPhrases(query: String): List<Phrase>
 }

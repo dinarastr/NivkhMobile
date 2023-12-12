@@ -9,6 +9,7 @@ import ru.dinarastepina.nivkh.presentation.models.Topic
 class PhrasesDataSourceImpl: PhrasesDataSource, KoinComponent {
 
     private val db: SqlDriverFactory by inject()
+
     override suspend fun getAllTopics(): List<Topic> {
         val ques = NivkhDatabase(
             db.getDriver(
@@ -19,7 +20,7 @@ class PhrasesDataSourceImpl: PhrasesDataSource, KoinComponent {
             .getAllTopics()
             .executeAsList()
             .map {
-                mapToTopic(it.title, it.imageUrl)
+                mapToTopic(it.topic, it.imageUrl ?: "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/images%2Fcooking%403x.png?alt=media&token=c3a2a5a3-342e-42a4-afed-8e13c2e51559")
             }
     }
 

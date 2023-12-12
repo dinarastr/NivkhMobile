@@ -8,9 +8,10 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
+import ru.dinarastepina.nivkh.presentation.models.Topic
 
-class TopicsVM: BaseViewModel<TopicsState, TopicsEvents>(
-    initialState = TopicsState.TopicsLoaded()
+class TopicsVM : BaseViewModel<TopicsState, TopicsEvents>(
+    initialState = TopicsState.Loading
 ), KoinComponent {
 
     private val repository: IPhrasesRepository by inject()
@@ -22,12 +23,10 @@ class TopicsVM: BaseViewModel<TopicsState, TopicsEvents>(
 
     private fun loadTopics() {
         coroutineScope.launch(Dispatchers.Default) {
-            repository.getAllTopics().collect { topics ->
-                mutableState.update {
-                    TopicsState.TopicsLoaded(
-                        topics = topics
-                    )
-                }
+            mutableState.update {
+                TopicsState.TopicsLoaded(
+                    topics = repository.getAllTopics()
+                )
             }
         }
     }

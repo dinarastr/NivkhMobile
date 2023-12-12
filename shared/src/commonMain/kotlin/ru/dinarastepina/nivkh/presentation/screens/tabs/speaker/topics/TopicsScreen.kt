@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -54,40 +55,39 @@ object TopicsScreen : Screen {
 
         val navigator = LocalNavigator.currentOrThrow
 
-        when (val state = topicsState) {
-            is TopicsState.TopicsLoaded ->
-
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primary
-                            ),
-                            title = {
-                                Text(
-                                    text = "Темы",
-                                    color = MaterialTheme.colorScheme.onPrimary
-                                )
-                            },
-                            actions = {
-                                IconButton(
-                                    onClick = {
-                                       navigator.push(SearchScreen)
-                                    }
-                                ) {
-                                    Icon(Icons.Filled.Search, contentDescription = null)
-                                }
-                            }
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    ),
+                    title = {
+                        Text(
+                            text = "Темы",
+                            color = MaterialTheme.colorScheme.onPrimary
                         )
+                    },
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                navigator.push(SearchScreen)
+                            }
+                        ) {
+                            Icon(Icons.Filled.Search, contentDescription = null)
+                        }
                     }
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize().padding(
-                            it
-                        ),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
+                )
+            }
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(
+                    it
+                ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                when (val state = topicsState) {
+                    is TopicsState.TopicsLoaded -> {
                         TopicsList(
                             topics = state.topics,
                             onTopicSelected = {
@@ -95,30 +95,36 @@ object TopicsScreen : Screen {
                             }
                         )
                     }
-                }
-        }
-    }
-}
 
-@Composable
-fun TopicsList(
-    topics: List<Topic>,
-    onTopicSelected: (String) -> Unit
-) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        topics.forEach { topic ->
-            item(key = topic.title) {
-                TopicCard(
-                    imgUrl = topic.imageUrl,
-                    title = topic.title
-                ) {
-                    onTopicSelected(topic.title)
+                    else -> {
+                        CircularProgressIndicator()
+                    }
                 }
             }
         }
+    }
+
+    @Composable
+    fun TopicsList(
+        topics: List<Topic>,
+        onTopicSelected: (String) -> Unit
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            topics.forEach { topic ->
+                item(key = topic.title) {
+                    TopicCard(
+                        imgUrl = topic.imageUrl,
+                        title = topic.title
+                    ) {
+                        onTopicSelected(topic.title)
+                    }
+                }
+            }
+        }
+
     }
 }
