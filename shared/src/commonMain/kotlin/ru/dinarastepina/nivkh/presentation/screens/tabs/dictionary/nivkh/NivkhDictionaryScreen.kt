@@ -43,12 +43,12 @@ object NivkhDictionaryScreen: Screen {
         DictionaryContent(
             startLanguageContent = {
                 LanguageChip(
-                    title = "nivkh"
+                    title = "нивхский"
                 )
             },
             targetLanguageContent = {
                 LanguageChip(
-                    title = "russian"
+                    title = "русский"
                 )
             },
             onLanguageChange = {

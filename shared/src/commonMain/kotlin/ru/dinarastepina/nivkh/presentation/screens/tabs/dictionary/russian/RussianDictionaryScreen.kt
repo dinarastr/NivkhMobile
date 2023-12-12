@@ -42,12 +42,12 @@ object RussianDictionaryScreen: Screen {
         DictionaryContent(
             startLanguageContent = {
                 LanguageChip(
-                    title = "russian"
+                    title = "русский"
                 )
             },
             targetLanguageContent = {
                 LanguageChip(
-                    title = "nivkh"
+                    title = "нивхский"
                 )
             },
             onLanguageChange = {
