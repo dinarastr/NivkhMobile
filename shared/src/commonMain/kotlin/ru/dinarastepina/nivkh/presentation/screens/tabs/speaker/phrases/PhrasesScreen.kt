@@ -218,11 +218,14 @@ class PhrasesScreen(val topic: String): Screen {
                                     selected.value = phrase
                                     isLoading.value = true
                                     val cached =
-                                        checkIfCached("https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media")
+                                        checkIfCached(
+                                            "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/nivkh%2Faudio%2F${phrase.audio}.mp3?alt=media"
+                                        )
                                     load(
                                         isLoading = isLoading,
                                         cached = cached,
-                                        url = "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media",
+                                        url =
+                                        "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/nivkh%2Faudio%2F${phrase.audio}.mp3?alt=media",
                                         controller = player,
                                         selected = selected
                                     ) {
@@ -230,7 +233,7 @@ class PhrasesScreen(val topic: String): Screen {
                                     }
                                     if (cached.not()) {
                                         downloadFile(
-                                            "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/udegeaudio%2F${phrase.audio}?alt=media"
+                                            "https://firebasestorage.googleapis.com/v0/b/fir-523a0.appspot.com/o/nivkh%2Faudio%2F${phrase.audio}.mp3?alt=media"
                                         )
                                     }
                                 }

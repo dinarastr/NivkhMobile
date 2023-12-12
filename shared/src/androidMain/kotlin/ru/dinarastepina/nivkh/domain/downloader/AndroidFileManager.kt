@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.domain.downloader
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.net.toUri
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -19,7 +20,7 @@ class AndroidFileManager(private val context: Context): FileManager {
         val input = URL(url).openStream()
         val filename = url.toUri().lastPathSegment.orEmpty()
         if (filename.contains("/")) {
-           File(context.cacheDir, separateFilename(filename).first).mkdir()
+           File(context.cacheDir, directoryName(filename)).mkdir()
         }
         val output = File(context.cacheDir, filename).outputStream()
         input.use { inputStream ->
@@ -29,13 +30,14 @@ class AndroidFileManager(private val context: Context): FileManager {
         }
     }
 
-    private fun separateFilename(segment: String): Pair<String, String> {
+    private fun directoryName(segment: String): String {
         val dirs = segment.split("/")
-        return dirs.first() to dirs.last()
+        return dirs.dropLast(1).joinToString("/")
     }
 
     override fun checkIfFileExists(filename: String): Boolean {
         val uri = filename.toUri()
+        Log.i("filler", uri.lastPathSegment.orEmpty())
         val file = File(
             context.cacheDir, uri.lastPathSegment.orEmpty()
         )
