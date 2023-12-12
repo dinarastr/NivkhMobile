@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.domain.downloader
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.core.net.toUri
 import org.koin.core.module.Module
@@ -18,11 +19,9 @@ internal actual val fileManagerModule: Module = module {
 class AndroidFileManager(private val context: Context): FileManager {
     override fun downloadFile(url: String) {
         val input = URL(url).openStream()
-        val filename = url.toUri().lastPathSegment.orEmpty()
-        if (filename.contains("/")) {
-           File(context.cacheDir, directoryName(filename)).mkdir()
-        }
-        val output = File(context.cacheDir, filename).outputStream()
+        val filename = url.toUri().getFileName()
+        File(context.cacheDir, "audio").mkdir()
+        val output = File(context.cacheDir, "audio/$filename").outputStream()
         input.use { inputStream ->
             output.use { outputStream ->
                 inputStream.copyTo(outputStream)
@@ -30,16 +29,16 @@ class AndroidFileManager(private val context: Context): FileManager {
         }
     }
 
-    private fun directoryName(segment: String): String {
-        val dirs = segment.split("/")
-        return dirs.dropLast(1).joinToString("/")
+    private fun Uri.getFileName(): String {
+        val path = lastPathSegment.orEmpty()
+        return if (path.contains("/")) path.split("/").last() else path
     }
 
-    override fun checkIfFileExists(filename: String): Boolean {
-        val uri = filename.toUri()
-        Log.i("filler", uri.lastPathSegment.orEmpty())
+    override fun checkIfFileExists(url: String): Boolean {
+        val uri = url.toUri()
+        val fileName = uri.getFileName()
         val file = File(
-            context.cacheDir, uri.lastPathSegment.orEmpty()
+            context.cacheDir, "audio/$fileName"
         )
         println("${file.exists()}")
         return file.exists()

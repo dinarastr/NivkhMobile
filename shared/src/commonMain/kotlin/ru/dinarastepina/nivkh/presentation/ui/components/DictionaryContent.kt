@@ -2,8 +2,10 @@ package ru.dinarastepina.nivkh.presentation.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,15 +56,35 @@ fun DictionaryContent(
                     start = 16.dp,
                     end = 16.dp,
                     top = 16.dp
-                )
+                ).fillMaxWidth()
             ) {
                 stickyHeader {
                    additionalKeys()
                 }
                 items(items.itemCount) { position ->
                     val word = items[position]
-                    word?.let {
-                        Text(text = it.content)
+                    word?.let { article ->
+                        if (article.content.isNotBlank()) {
+                            when (article) {
+                                is Article.Original -> Text(
+                                    text = article.content,
+                                    style = MaterialTheme.typography.headlineSmall
+                                )
+
+                                is Article.Translation -> Text(
+                                    text = article.content
+                                )
+
+                                is Article.Comment -> Text(
+                                    text = article.content,
+                                    style = MaterialTheme.typography.displaySmall
+                                )
+
+                                is Article.Separator -> Text(
+                                    text = ""
+                                )
+                            }
+                        }
                     }
                 }
             }

@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.domain.player
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.net.Uri
 import androidx.core.net.toUri
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -54,12 +55,17 @@ class AndroidMediaPlayerController(private val context: Context): MediaPlayerCon
         }
         if (cached) {
             val uri = pathSource.toUri()
-            val file = File(context.cacheDir, uri.lastPathSegment.orEmpty())
+            val file = File(context.cacheDir, "audio/${uri.getFileName()}")
             mediaPlayer?.setDataSource(file.path)
         } else {
             mediaPlayer?.setDataSource(pathSource)
         }
         mediaPlayer?.prepareAsync()
+    }
+
+    private fun Uri.getFileName(): String {
+        val path = lastPathSegment.orEmpty()
+        return if (path.contains("/")) path.split("/").last() else path
     }
 
     override fun start() {

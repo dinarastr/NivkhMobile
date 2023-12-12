@@ -38,7 +38,7 @@ fun NivkhWord.toArticle(): Article {
             this.wordId,
             this.content.orEmpty()
         )
-        else -> throw IllegalArgumentException("incorrect article type")
+        else -> throw IllegalArgumentException("incorrect article type $type")
     }
 }
 
