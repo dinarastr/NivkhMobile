@@ -22,13 +22,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun NivkhSearchBar(
     hint: String,
     modifier: Modifier = Modifier,
-    query: MutableState<String>,
+    query: MutableState<TextFieldValue>,
     onValueChanged: (String) -> Unit,
     onClearSearch: () -> Unit,
     onNavigateBack: (() -> Unit)? = null
@@ -70,11 +71,11 @@ fun NivkhSearchBar(
             },
             trailingIcon = {
                 AnimatedVisibility(
-                    visible = query.value.isNotBlank()
+                    visible = query.value.text.isNotBlank()
                 ) {
                     Icon(
                         modifier = Modifier.clickable {
-                            query.value = ""
+                            query.value = TextFieldValue("")
                             onClearSearch()
                         },
                         imageVector = Icons.Filled.Close,
@@ -85,8 +86,8 @@ fun NivkhSearchBar(
             value = query.value,
             onValueChange = {
                 query.value = it
-                if (it.isNotBlank()) {
-                    onValueChanged(it)
+                if (it.text.isNotBlank()) {
+                    onValueChanged(it.text)
                 } else {
                     onClearSearch()
                 }

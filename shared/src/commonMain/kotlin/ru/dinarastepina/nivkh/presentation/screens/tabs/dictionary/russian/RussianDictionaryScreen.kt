@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.input.TextFieldValue
 import app.cash.paging.compose.collectAsLazyPagingItems
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.model.rememberScreenModel
@@ -28,7 +29,7 @@ object RussianDictionaryScreen: Screen {
         val vm = rememberScreenModel { RussianDictionaryVM() }
         val state by vm.state.collectAsState()
         val items = (state as RussianDictionaryState.LoadedState).words.collectAsLazyPagingItems()
-        val query = remember { mutableStateOf("") }
+        val query = remember { mutableStateOf(TextFieldValue("")) }
         val navigator = LocalNavigator.currentOrThrow
 
         LifecycleEffect(
@@ -54,7 +55,7 @@ object RussianDictionaryScreen: Screen {
                 navigator.replace(NivkhDictionaryScreen)
             },
             onEmptySearch = {
-                query.value = ""
+                query.value = TextFieldValue("")
                 vm.onEvent(
                     RussianDictionaryEvents.ClearSearch
                 )

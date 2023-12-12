@@ -1,5 +1,6 @@
 package ru.dinarastepina.nivkh.presentation.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,10 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import app.cash.paging.compose.LazyPagingItems
 import ru.dinarastepina.nivkh.presentation.models.Article
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DictionaryContent(
     startLanguageContent: @Composable () -> Unit,
@@ -21,7 +24,8 @@ fun DictionaryContent(
     onLanguageChange: () -> Unit,
     onSearch: (String) -> Unit,
     onEmptySearch: () -> Unit,
-    query: MutableState<String>
+    query: MutableState<TextFieldValue>,
+    additionalKeys: @Composable () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -40,7 +44,7 @@ fun DictionaryContent(
                 query = query,
                 onClearSearch = onEmptySearch,
                 onValueChanged = {
-                    query.value = it
+                    query.value = query.value
                     onSearch(it)
                 },
                 hint = "Введите слово"
@@ -52,6 +56,9 @@ fun DictionaryContent(
                     top = 16.dp
                 )
             ) {
+                stickyHeader {
+                   additionalKeys()
+                }
                 items(items.itemCount) { position ->
                     val word = items[position]
                     word?.let {
