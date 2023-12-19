@@ -31,7 +31,7 @@ fun EmptyContainer(
             Image(
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
                 modifier = Modifier.size(80.dp),
-                painter = painterResource("images/ic_empty_search.png"),
+                painter = painterResource("images/ic_empty_search.webp"),
                 contentDescription = "Ничего не найдено"
             )
             Text(text = "Ничего не найдено")

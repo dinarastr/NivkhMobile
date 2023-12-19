@@ -19,11 +19,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.navigator.CurrentScreen
+import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import ru.dinarastepina.nivkh.presentation.screens.onboarding.OnBoardingScreen
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.DictionaryTab
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.SpeakerTab
 import ru.dinarastepina.nivkh.presentation.ui.components.InfoDialog
@@ -35,39 +39,26 @@ object HomeScreen: Screen {
 
     @Composable
     override fun Content() {
-       TabNavigator(
-           tab = DictionaryTab
-       ) {
 
-           var open by remember { mutableStateOf(false) }
+        val vm = rememberScreenModel { HomeScreenVM() }
 
-           if (open) {
-               InfoDialog {
-                   open = it
-               }
-           }
 
-           Scaffold(
-               content = { padding ->
-                   CurrentTab(
-                       modifier = Modifier.padding(
-                           bottom = padding.calculateBottomPadding()
-                       )
-                   )
-               },
-               bottomBar = {
-                   NavigationBar(
-                       containerColor = MaterialTheme.colorScheme.primary
-                   ) {
-                       TabNavigationItem(DictionaryTab)
-                       TabNavigationItem(SpeakerTab)
-                        InfoItem {
-                            open = true
-                        }
-                   }
-               }
-           )
-       }
+        val homeState by vm.startDestination
+
+        when (homeState) {
+            OnBoardingScreen.key -> {
+                Navigator(
+                    screen = OnBoardingScreen
+                ) {
+                    Scaffold {
+                        CurrentScreen()
+                    }
+                }
+            }
+            TabsScreen.key -> {
+                TabsContent()
+            }
+        }
     }
 }
 
@@ -136,6 +127,53 @@ private fun RowScope.TabNavigationItem(
             )
         }
     )
+}
+
+object TabsScreen: Screen {
+    override val key: ScreenKey
+        get() = Tags.TABS_SCREEN_TITLE.tag
+
+    @Composable
+    override fun Content() {
+        TabsContent()
+    }
+}
+
+@Composable
+fun TabsContent() {
+    TabNavigator(
+        tab = DictionaryTab
+    ) {
+
+        var open by remember { mutableStateOf(false) }
+
+        if (open) {
+            InfoDialog {
+                open = it
+            }
+        }
+
+        Scaffold(
+            content = { padding ->
+                CurrentTab(
+                    modifier = Modifier.padding(
+                        bottom = padding.calculateBottomPadding()
+                    )
+                )
+            },
+            bottomBar = {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.primary
+                ) {
+                    TabNavigationItem(DictionaryTab)
+                    TabNavigationItem(SpeakerTab)
+                    InfoItem {
+                        open = true
+                    }
+                }
+            }
+        )
+    }
 }
 
 

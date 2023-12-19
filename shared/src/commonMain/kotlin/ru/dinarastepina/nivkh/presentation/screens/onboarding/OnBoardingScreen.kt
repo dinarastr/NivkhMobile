@@ -36,6 +36,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.OnBoardingPage
 import ru.dinarastepina.nivkh.presentation.screens.home.HomeScreen
+import ru.dinarastepina.nivkh.presentation.screens.home.TabsScreen
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
 object OnBoardingScreen : Screen {
@@ -69,18 +70,18 @@ fun OnBoardingContent(
     val pages = listOf(
         OnBoardingPage(
             imagePath = "images/ob_dictionary.webp",
-            content = "Добро пожаловать в Удиэ!\n Здесь вы сможете найти нужное слово в словарях",
-            title = "Словари"
+            content = "Добро пожаловать в приложение Нивх диф!\n Найдите нужное вам слово в словарях, используя дополнительные символы",
+            title = "Найди"
+        ),
+        OnBoardingPage(
+            imagePath = "images/ob_topics.webp",
+            content = "Выучите множество фраз из самых актуальных тем",
+            title = "Послушай"
         ),
         OnBoardingPage(
             imagePath = "images/ob_phrases.webp",
-            content = "Прочитать и даже прослушать много полезных фраз",
-            title = "Разговорник"
-        ),
-        OnBoardingPage(
-            imagePath = "images/ob_info.webp",
-            content = "А также узнать множество полезной информации!",
-            title = "Справочник"
+            content = "Прослушайте и поделитесь ими с друзьями!",
+            title = "Поделись"
         )
     )
 
@@ -100,6 +101,7 @@ fun OnBoardingContent(
                     val painter =
                         painterResource(imagePath)
                     Box(
+                        contentAlignment = Alignment.Center,
                         modifier = Modifier.background(
                             shape = CircleShape,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -138,7 +140,7 @@ fun OnBoardingContent(
             modifier = Modifier.padding(16.dp),
             onClick = {
                 onFinish()
-                navigator.replace(HomeScreen)
+                navigator.replace(TabsScreen)
             }) {
             Text(text = "Понятно!")
         }
