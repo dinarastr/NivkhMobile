@@ -15,6 +15,7 @@ voyagerVersion = "1.0.0-rc05"
 imageLoaderVersion = "1.2.10"
 calfAdaptiveUiVersion = "0.2.0"
 
+splash = "1.0.1"
 dataStore = "1.0.0"
 coreKtx = "1.12.0"
 
@@ -48,6 +49,7 @@ koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore"}
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 composeActivity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+splashAndroid = { module = "androidx.core:core-splashscreen", version.ref = "splash"}
 
 #ios
 sqlDelightNative = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelightVersion" }

@@ -46,5 +46,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.koinCompose)
     implementation(libs.koinAndroid)
+    implementation(libs.splashAndroid)
     debugImplementation(libs.compose.ui.tooling)
 }
