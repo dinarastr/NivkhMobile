@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -12,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.cash.paging.compose.LazyPagingItems
 import ru.dinarastepina.nivkh.presentation.models.Article
 
@@ -38,7 +41,10 @@ fun DictionaryContent(
         }
     ) { padding ->
         Column(
-            modifier = Modifier.padding(top = padding.calculateTopPadding())
+            modifier = Modifier.padding(
+                top = padding.calculateTopPadding(),
+                start = padding.calculateLeftPadding(LayoutDirection.Ltr),
+                end = padding.calculateRightPadding(LayoutDirection.Ltr))
         ) {
             NivkhSearchBar(
                 modifier = Modifier.padding(horizontal = 16.dp),
@@ -64,24 +70,28 @@ fun DictionaryContent(
                     val word = items[position]
                     word?.let { article ->
                         if (article.content.isNotBlank()) {
-                            when (article) {
-                                is Article.Original -> Text(
-                                    text = article.content,
-                                    style = MaterialTheme.typography.headlineSmall
-                                )
+                            SelectionContainer {
+                                when (article) {
+                                    is Article.Original -> Text(
+                                        text = article.content,
+                                        style = MaterialTheme.typography.headlineSmall.copy(
+                                            fontSize = 20.sp,
+                                        )
+                                    )
 
-                                is Article.Translation -> Text(
-                                    text = article.content
-                                )
+                                    is Article.Translation -> Text(
+                                        text = article.content
+                                    )
 
-                                is Article.Comment -> Text(
-                                    text = article.content,
-                                    style = MaterialTheme.typography.displaySmall
-                                )
+                                    is Article.Comment -> Text(
+                                        text = article.content,
+                                        style = MaterialTheme.typography.displaySmall
+                                    )
 
-                                is Article.Separator -> Text(
-                                    text = ""
-                                )
+                                    is Article.Separator -> Text(
+                                        text = ""
+                                    )
+                                }
                             }
                         }
                     }

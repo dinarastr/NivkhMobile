@@ -35,7 +35,6 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.OnBoardingPage
-import ru.dinarastepina.nivkh.presentation.screens.home.HomeScreen
 import ru.dinarastepina.nivkh.presentation.screens.home.TabsScreen
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
@@ -64,19 +63,24 @@ fun OnBoardingContent(
         initialPage = 0,
         initialPageOffsetFraction = 0f
     ) {
-        3
+        4
     }
 
     val pages = listOf(
         OnBoardingPage(
             imagePath = "images/ob_dictionary.webp",
             content = "Добро пожаловать в приложение Нивх диф!\n Найдите нужное вам слово в словарях, используя дополнительные символы",
-            title = "Найди"
+            title = "Словари"
+        ),
+        OnBoardingPage(
+            imagePath = "images/ob_dialects.webp",
+            content = "Для многих слов доступен поиск по разным диалектам (первый вариант - амурский нивхский, далее сахалинский нивхский, а также различные диалектные варианты.)",
+            title = "Диалекты"
         ),
         OnBoardingPage(
             imagePath = "images/ob_topics.webp",
             content = "Выучите множество фраз из самых актуальных тем",
-            title = "Послушай"
+            title = "Фразы"
         ),
         OnBoardingPage(
             imagePath = "images/ob_phrases.webp",
