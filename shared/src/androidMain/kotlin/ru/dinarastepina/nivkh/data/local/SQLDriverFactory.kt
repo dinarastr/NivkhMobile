@@ -27,7 +27,7 @@ class AndroidSqlDriverFactory(private val context: Context): SqlDriverFactory {
         val database: File = context.getDatabasePath(filename)
 
         if (!database.exists()) {
-            val inputStream = resource("nivkh.db").readBytes().inputStream()
+            val inputStream = resource("source.db").readBytes().inputStream()
             val outputStream = withContext(Dispatchers.IO) {
                 FileOutputStream(database.absolutePath)
             }

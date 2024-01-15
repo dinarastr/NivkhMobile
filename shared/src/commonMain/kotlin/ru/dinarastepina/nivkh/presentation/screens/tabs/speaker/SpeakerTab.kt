@@ -13,7 +13,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.topics.TopicsScreen
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
-object SpeakerTab: Tab {
+internal class SpeakerTab: Tab {
 
     override val key: ScreenKey = Tags.SPEAKER_SCREEN_TITLE.tag
     @Composable

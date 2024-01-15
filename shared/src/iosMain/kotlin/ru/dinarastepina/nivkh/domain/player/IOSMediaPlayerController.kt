@@ -51,6 +51,7 @@ class IOSMediaPlayerController : MediaPlayerController {
         }
     }
 
+    @OptIn(ExperimentalNativeApi::class)
     override fun prepare(pathSource: String, listener: MediaPlayerListener, cached: Boolean) {
         this.listener = WeakReference(listener)
         val url = if (cached.not()) {

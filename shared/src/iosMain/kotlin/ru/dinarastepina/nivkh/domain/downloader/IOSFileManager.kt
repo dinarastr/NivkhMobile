@@ -13,6 +13,11 @@ import platform.Foundation.NSUserDomainMask
 import platform.Foundation.URLByAppendingPathComponent
 import platform.Foundation.create
 import platform.Foundation.lastPathComponent
+import platform.UIKit.UIActivityViewController
+import platform.UIKit.UIApplication
+import platform.UIKit.UIViewController
+import platform.UIKit.UIWindow
+import platform.UIKit.popoverPresentationController
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
 internal actual val fileManagerModule: Module = module {
@@ -32,9 +37,9 @@ class IOSFileManager: FileManager {
         fileManager.createFileAtPath(filename?.path.orEmpty(), file,null)
     }
 
-    override fun checkIfFileExists(filename: String): Boolean {
+    override fun checkIfFileExists(url: String): Boolean {
         val fileManager: NSFileManager = NSFileManager.defaultManager()
-        val name = NSURL(string = filename).lastPathComponent().orEmpty()
+        val name = NSURL(string = url).lastPathComponent().orEmpty()
         val cacheDirectory = fileManager.URLsForDirectory(
             NSDocumentDirectory,
             NSUserDomainMask
@@ -44,6 +49,19 @@ class IOSFileManager: FileManager {
     }
 
     override fun sharePhrase(phrase: Phrase) {
-        //TODO("Not yet implemented")
+        val sharePicker = UIActivityViewController(
+            activityItems = listOf(
+                "Нивхский: ${phrase.nivkh}\nРусский: ${phrase.russian}"
+            ),
+            applicationActivities = null
+        )
+        val window = UIApplication.sharedApplication.windows().first() as UIWindow?
+        sharePicker.popoverPresentationController()?.sourceView = window
+        sharePicker.setTitle("Поделиться фразой")
+        window?.rootViewController?.presentViewController(
+            sharePicker as UIViewController,
+            animated = true,
+            completion = null
+        )
     }
 }

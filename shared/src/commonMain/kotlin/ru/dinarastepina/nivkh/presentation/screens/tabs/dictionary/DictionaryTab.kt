@@ -17,7 +17,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDictionaryScreen
 import ru.dinarastepina.nivkh.presentation.utils.Tags
 
-object DictionaryTab: Tab {
+internal class DictionaryTab: Tab {
 
     override val key: ScreenKey = Tags.DICTIONARY_SCREEN_TITLE.tag
 

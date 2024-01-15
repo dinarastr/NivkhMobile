@@ -14,7 +14,7 @@ class PhrasesDataSourceImpl: PhrasesDataSource, KoinComponent {
         val ques = NivkhDatabase(
             db.getDriver(
                 NivkhDatabase.Schema,
-                "nivkh.db")).phrasesQueries
+                "source.db")).phrasesQueries
 
         return ques
             .getAllTopics()

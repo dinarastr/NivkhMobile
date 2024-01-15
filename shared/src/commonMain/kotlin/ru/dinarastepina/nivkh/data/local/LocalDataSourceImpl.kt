@@ -14,6 +14,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
         val ques = NivkhDatabase(
             db.getDriver(NivkhDatabase.Schema,
                 "nivkh.db")).nivkhQueries
+
         return ques
             .selectAllNivkhWords(
                 limit.toLong(),

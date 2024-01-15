@@ -142,7 +142,7 @@ object TabsScreen: Screen {
 @Composable
 fun TabsContent() {
     TabNavigator(
-        tab = DictionaryTab
+        tab = DictionaryTab()
     ) {
 
         var open by remember { mutableStateOf(false) }
@@ -165,8 +165,8 @@ fun TabsContent() {
                 NavigationBar(
                     containerColor = MaterialTheme.colorScheme.primary
                 ) {
-                    TabNavigationItem(DictionaryTab)
-                    TabNavigationItem(SpeakerTab)
+                    TabNavigationItem(DictionaryTab())
+                    TabNavigationItem(SpeakerTab())
                     InfoItem {
                         open = true
                     }
