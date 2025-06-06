@@ -1,23 +1,17 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.compose.compiler)
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-    jvmToolchain(11)
 
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
-        }
-    }
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -32,60 +26,52 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.animation)
-                implementation(compose.materialIconsExtended)
-                api(libs.bundles.multiplatform)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                api(compose.components.resources)
-            }
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.animation)
+            implementation(compose.materialIconsExtended)
+            api(libs.bundles.multiplatform)
+            api(compose.components.resources)
+            implementation(libs.koinCore)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-            }
-        }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.compose.runtime)
-                implementation(libs.composeActivity)
-                implementation(libs.sqlDelightAndroid)
-                implementation(libs.datastore)
-                implementation(libs.coreKtx)
-            }
+        androidMain.dependencies {
+            implementation(libs.compose.runtime)
+            implementation(libs.composeActivity)
+            implementation(libs.sqlDelightAndroid)
+            implementation(libs.datastore)
+            implementation(libs.coreKtx)
+            implementation(libs.koinAndroid)
+            implementation(libs.koinCompose)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.sqlDelightNative)
-            }
+        iosMain.dependencies {
+            implementation(libs.sqlDelightNative)
         }
     }
 }
 
 android {
     namespace = "ru.dinarastepina.nivkh"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    kotlin {
+        jvmToolchain(11)
     }
-}
-dependencies {
-    implementation("androidx.core:core-ktx:+")
 }
 
 sqldelight {

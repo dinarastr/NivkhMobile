@@ -8,8 +8,7 @@ import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.resource
+import nivkhmobile.shared.generated.resources.Res
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -22,12 +21,11 @@ internal actual val cacheModule: Module = module {
     singleOf(::AndroidSqlDriverFactory) bind SqlDriverFactory::class
 }
 class AndroidSqlDriverFactory(private val context: Context): SqlDriverFactory {
-    @OptIn(ExperimentalResourceApi::class)
     override suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
         val database: File = context.getDatabasePath(filename)
 
         if (!database.exists()) {
-            val inputStream = resource("source.db").readBytes().inputStream()
+            val inputStream = Res.readBytes(("files/source.db")).inputStream()
             val outputStream = withContext(Dispatchers.IO) {
                 FileOutputStream(database.absolutePath)
             }

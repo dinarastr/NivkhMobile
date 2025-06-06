@@ -4,14 +4,12 @@ import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
-import app.cash.sqldelight.driver.native.ConnectionWrapper
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
-import kotlinx.cinterop.allocArray
 import kotlinx.cinterop.convert
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
@@ -28,10 +26,8 @@ import platform.Foundation.NSError
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSString
-import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.create
-import platform.Foundation.dataWithBytes
 import platform.Foundation.stringByAppendingPathComponent
 
 internal actual val cacheModule: Module = module {
@@ -69,7 +65,7 @@ class IosSqlDriverFactory : SqlDriverFactory {
 
                 val copySuccess = fileManager.createFileAtPath(
                     path = targetDBPath,
-                    contents = resource("source.db").readBytes().toNSData(),
+                    contents = resource("composeResources/files/source.db").readBytes().toNSData(),
                     attributes = null
                 )
 

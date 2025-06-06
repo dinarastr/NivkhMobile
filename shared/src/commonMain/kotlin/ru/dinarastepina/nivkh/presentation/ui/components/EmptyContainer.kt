@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_empty_search
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -31,7 +33,7 @@ fun EmptyContainer(
             Image(
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
                 modifier = Modifier.size(80.dp),
-                painter = painterResource("images/ic_empty_search.webp"),
+                painter = painterResource(Res.drawable.ic_empty_search),
                 contentDescription = "Ничего не найдено"
             )
             Text(text = "Ничего не найдено")

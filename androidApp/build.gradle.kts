@@ -1,15 +1,16 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "ru.dinarastepina.nivkh.android"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "ru.dinarastepina.nivkh.android"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 2
         versionName = "1.1"
     }

@@ -11,10 +11,11 @@ class PhrasesDataSourceImpl: PhrasesDataSource, KoinComponent {
     private val db: SqlDriverFactory by inject()
 
     override suspend fun getAllTopics(): List<Topic> {
+
         val ques = NivkhDatabase(
             db.getDriver(
                 NivkhDatabase.Schema,
-                "source.db")).phrasesQueries
+                "nivkh.db")).phrasesQueries
 
         return ques
             .getAllTopics()

@@ -1,6 +1,5 @@
 package ru.dinarastepina.nivkh.presentation.screens.onboarding
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +31,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.allDrawableResources
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.OnBoardingPage
@@ -54,7 +55,6 @@ object OnBoardingScreen : Screen {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalResourceApi::class)
 @Composable
 fun OnBoardingContent(
     onFinish: () -> Unit
@@ -68,22 +68,22 @@ fun OnBoardingContent(
 
     val pages = listOf(
         OnBoardingPage(
-            imagePath = "images/ob_dictionary.webp",
+            imagePath = "ob_dictionary",
             content = "Добро пожаловать в приложение Нивх диф!\n Найдите нужное вам слово в словарях, используя дополнительные символы",
             title = "Словари"
         ),
         OnBoardingPage(
-            imagePath = "images/ob_dialects.webp",
+            imagePath = "b_dialects",
             content = "Для многих слов доступен поиск по разным диалектам (первый вариант - амурский нивхский, далее сахалинский нивхский, а также различные диалектные варианты.)",
             title = "Диалекты"
         ),
         OnBoardingPage(
-            imagePath = "images/ob_topics.webp",
+            imagePath = "ob_topics",
             content = "Выучите множество фраз из самых актуальных тем",
             title = "Фразы"
         ),
         OnBoardingPage(
-            imagePath = "images/ob_phrases.webp",
+            imagePath = "ob_phrases",
             content = "Прослушайте и поделитесь ими с друзьями!",
             title = "Поделись"
         )
@@ -103,7 +103,7 @@ fun OnBoardingContent(
             ) {
                 with(pages[it]) {
                     val painter =
-                        painterResource(imagePath)
+                        painterResource(Res.allDrawableResources[imagePath]!!)
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier.background(
@@ -151,8 +151,6 @@ fun OnBoardingContent(
     }
 }
 
-
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PagerIndicator(
     pagerState: PagerState

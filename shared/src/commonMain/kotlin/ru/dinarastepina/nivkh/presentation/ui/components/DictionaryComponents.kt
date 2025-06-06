@@ -21,6 +21,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.allDrawableResources
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -71,7 +73,7 @@ fun LanguageChip(
         languageIcon?.let {
             Image(
                 modifier = Modifier.size(18.dp),
-                painter = painterResource(it),
+                painter = painterResource(Res.allDrawableResources[it]!!),
                 contentDescription = title
             )
         }
