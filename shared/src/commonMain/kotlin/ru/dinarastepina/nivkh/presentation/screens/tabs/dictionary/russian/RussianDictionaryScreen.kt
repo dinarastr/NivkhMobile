@@ -28,9 +28,10 @@ object RussianDictionaryScreen: Screen {
 
         val vm = rememberScreenModel { RussianDictionaryVM() }
         val state by vm.state.collectAsState()
-        val items = (state as RussianDictionaryState.LoadedState).words.collectAsLazyPagingItems()
         val query = remember { mutableStateOf(TextFieldValue("")) }
         val navigator = LocalNavigator.currentOrThrow
+
+        val items = (state as RussianDictionaryState.LoadedState).words.collectAsLazyPagingItems()
 
         LifecycleEffect(
             onStarted = {

@@ -29,7 +29,7 @@ fun DictionaryContent(
     onSearch: (String) -> Unit,
     onEmptySearch: () -> Unit,
     query: MutableState<TextFieldValue>,
-    additionalKeys: @Composable () -> Unit = {},
+    additionalKeys: (@Composable () -> Unit)? = null,
 ) {
     Scaffold(
         topBar = {
@@ -63,8 +63,10 @@ fun DictionaryContent(
                     top = 16.dp
                 ).fillMaxWidth()
             ) {
-                stickyHeader {
-                   additionalKeys()
+                additionalKeys?.let { keys ->
+                    stickyHeader {
+                        keys()
+                    }
                 }
                 items(items.itemCount) { position ->
                     val word = items[position]

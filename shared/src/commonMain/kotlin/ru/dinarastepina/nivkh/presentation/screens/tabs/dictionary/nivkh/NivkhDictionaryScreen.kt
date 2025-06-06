@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
+import app.cash.paging.compose.LazyPagingItems
 import app.cash.paging.compose.collectAsLazyPagingItems
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.model.rememberScreenModel
@@ -14,6 +15,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian.RussianDictionaryScreen
 import ru.dinarastepina.nivkh.presentation.ui.components.DictionaryContent
 import ru.dinarastepina.nivkh.presentation.ui.components.KeyBoardDropDown

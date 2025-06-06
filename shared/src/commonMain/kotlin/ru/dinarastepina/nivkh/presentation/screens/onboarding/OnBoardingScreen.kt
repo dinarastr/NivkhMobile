@@ -73,7 +73,7 @@ fun OnBoardingContent(
             title = "Словари"
         ),
         OnBoardingPage(
-            imagePath = "b_dialects",
+            imagePath = "ob_dialects",
             content = "Для многих слов доступен поиск по разным диалектам (первый вариант - амурский нивхский, далее сахалинский нивхский, а также различные диалектные варианты.)",
             title = "Диалекты"
         ),
