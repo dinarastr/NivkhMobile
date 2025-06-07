@@ -18,7 +18,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "KMPNativeBridge"
+            baseName = "shared"
             isStatic = true
             
             // Add SQLite linker option

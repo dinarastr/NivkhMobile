@@ -1,5 +1,5 @@
 import SwiftUI
-import KMPNativeBridge
+import shared
 
 @main
 struct iOSApp: App {
