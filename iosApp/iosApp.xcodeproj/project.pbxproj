@@ -11,8 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		78AF56B32DF409C1005375F0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AF56B22DF409C1005375F0 /* libsqlite3.tbd */; };
 		78E9F8722B553D2300ACF077 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78E9F8712B553D2300ACF077 /* Launch Screen.storyboard */; };
-		9DA900931E5AF4975F1378C5 /* Pods_________.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C60AFA36BB2D309218B2B6C /* Pods_________.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +22,8 @@
 		7555FF7B242A565900829871 /* Нивх диф.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Нивх диф.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78AF56B22DF409C1005375F0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		78E9F8712B553D2300ACF077 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		7D1AC866A10149238B6220E6 /* Pods-Нивх диф.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Нивх диф.debug.xcconfig"; path = "Target Support Files/Pods-Нивх диф/Pods-Нивх диф.debug.xcconfig"; sourceTree = "<group>"; };
-		7D8B7BD0896F14C76B11115B /* Pods-Нивх диф.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Нивх диф.release.xcconfig"; path = "Target Support Files/Pods-Нивх диф/Pods-Нивх диф.release.xcconfig"; sourceTree = "<group>"; };
-		8C60AFA36BB2D309218B2B6C /* Pods_________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1A7A69DBA95B97F42A5CB05 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		E318076D035AA358E47A7C13 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DA900931E5AF4975F1378C5 /* Pods_________.framework in Frameworks */,
+				78AF56B32DF409C1005375F0 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +51,6 @@
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
-				E65126A4C1557223213FA10E /* Pods */,
 				C834A5B9E81B828036BC1C42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -84,20 +79,9 @@
 		C834A5B9E81B828036BC1C42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C60AFA36BB2D309218B2B6C /* Pods_________.framework */,
+				78AF56B22DF409C1005375F0 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E65126A4C1557223213FA10E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B1A7A69DBA95B97F42A5CB05 /* Pods-iosApp.debug.xcconfig */,
-				E318076D035AA358E47A7C13 /* Pods-iosApp.release.xcconfig */,
-				7D1AC866A10149238B6220E6 /* Pods-Нивх диф.debug.xcconfig */,
-				7D8B7BD0896F14C76B11115B /* Pods-Нивх диф.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,12 +91,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Нивх диф" */;
 			buildPhases = (
-				B75D69080B5022537BDD969D /* [CP] Check Pods Manifest.lock */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				389D0CFEF24CAAC6685740CB /* Frameworks */,
-				44732A7D7CAEC744FF07FA40 /* [CP] Embed Pods Frameworks */,
-				3666AE7CE6D3050A53816BF4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,8 +110,9 @@
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1640;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
@@ -168,65 +150,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3666AE7CE6D3050A53816BF4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		44732A7D7CAEC744FF07FA40 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Нивх диф/Pods-Нивх диф-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B75D69080B5022537BDD969D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Нивх диф-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7555FF77242A565900829871 /* Sources */ = {
@@ -276,6 +199,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4TLQ4U5T9W;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -337,6 +261,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4TLQ4U5T9W;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -359,19 +284,29 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D1AC866A10149238B6220E6 /* Pods-Нивх диф.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 4TLQ4U5T9W;
+				DEVELOPMENT_TEAM = VR3DT5HJ6N;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iosFramework",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Нивх диф";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/../iosFramework",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					KMPNativeBridge,
+					"-F$(PROJECT_DIR)/../iosFramework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.nivkhDif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,19 +317,29 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D8B7BD0896F14C76B11115B /* Pods-Нивх диф.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 4TLQ4U5T9W;
+				DEVELOPMENT_TEAM = VR3DT5HJ6N;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../iosFramework",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Нивх диф";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/../iosFramework",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					KMPNativeBridge,
+					"-F$(PROJECT_DIR)/../iosFramework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.nivkhDif;
 				PRODUCT_NAME = "$(TARGET_NAME)";

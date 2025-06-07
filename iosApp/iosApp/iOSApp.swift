@@ -1,16 +1,14 @@
 import SwiftUI
-import shared
+import KMPNativeBridge
 
 @main
 struct iOSApp: App {
-
-    init(){
-        KoinKt.doInitKoin(enableNetworkLogs: true)
+    init() {
+        KoinHelperKt.doInitKoin()
     }
-
-	var body: some Scene {
-		WindowGroup {
-			ContentView()
-		}
-	}
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
 }

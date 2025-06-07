@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.sqlDelight)
@@ -12,18 +11,18 @@ plugins {
 kotlin {
 
     androidTarget()
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
-        framework {
-            baseName = "shared"
+    
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "KMPNativeBridge"
+            isStatic = true
+            
+            // Add SQLite linker option
+            linkerOpts.add("-lsqlite3")
         }
     }
 
@@ -35,8 +34,10 @@ kotlin {
             implementation(compose.animation)
             implementation(compose.materialIconsExtended)
             api(libs.bundles.multiplatform)
-            api(compose.components.resources)
-            implementation(libs.koinCore)
+            implementation(compose.components.resources)
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         androidMain.dependencies {
             implementation(libs.compose.runtime)
@@ -44,8 +45,6 @@ kotlin {
             implementation(libs.sqlDelightAndroid)
             implementation(libs.datastore)
             implementation(libs.coreKtx)
-            implementation(libs.koinAndroid)
-            implementation(libs.koinCompose)
         }
 
         iosMain.dependencies {
@@ -81,4 +80,5 @@ sqldelight {
             generateAsync.set(true)
         }
     }
+    linkSqlite.set(true)
 }

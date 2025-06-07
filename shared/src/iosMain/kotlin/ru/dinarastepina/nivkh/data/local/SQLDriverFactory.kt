@@ -5,7 +5,6 @@ import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.addressOf
@@ -14,8 +13,7 @@ import kotlinx.cinterop.convert
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.usePinned
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.resource
+import nivkhmobile.shared.generated.resources.Res
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -35,7 +33,7 @@ internal actual val cacheModule: Module = module {
 }
 
 class IosSqlDriverFactory : SqlDriverFactory {
-    @OptIn(ExperimentalForeignApi::class, ExperimentalResourceApi::class, BetaInteropApi::class)
+    @OptIn(ExperimentalForeignApi::class)
     override suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
         val fileManager: NSFileManager = NSFileManager.defaultManager()
         val databaseCache = NSSearchPathForDirectoriesInDomains(
@@ -65,7 +63,7 @@ class IosSqlDriverFactory : SqlDriverFactory {
 
                 val copySuccess = fileManager.createFileAtPath(
                     path = targetDBPath,
-                    contents = resource("composeResources/files/source.db").readBytes().toNSData(),
+                    contents = Res.readBytes("files/source.db").toNSData(),
                     attributes = null
                 )
 
@@ -79,7 +77,7 @@ class IosSqlDriverFactory : SqlDriverFactory {
     }
 }
 
-@OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
+@OptIn(ExperimentalForeignApi::class)
 fun ByteArray.toNSData() = this.usePinned {
     NSData.create(bytes = it.addressOf(0), length = this.size.convert())
 }

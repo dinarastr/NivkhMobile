@@ -2,26 +2,33 @@ package ru.dinarastepina.nivkh.di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
+import org.koin.dsl.module
 import ru.dinarastepina.nivkh.data.local.cacheModule
 import ru.dinarastepina.nivkh.domain.downloader.fileManagerModule
 import ru.dinarastepina.nivkh.domain.player.playerModule
 import ru.dinarastepina.nivkh.domain.repositories.dataStoreModule
 
-fun initKoinForAndroid(appDeclaration: KoinAppDeclaration = {}) =
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
         modules(
-            appModule(),
-            cacheModule,
-            localDictionaryModule,
-            localPhraseModule,
-            dictionaryRepositoryModule,
-            phraseRepositoryModule,
-            dataStoreModule,
-            playerModule,
-            fileManagerModule
+            commonModules
         )
     }
 
-fun initKoin(enableNetworkLogs: Boolean) =
-    initKoinForAndroid()
+fun initKoinForAndroid(appDeclaration: KoinAppDeclaration = {}) =
+    initKoin(appDeclaration)
+
+val commonModules = module {
+    includes(
+        appModule(),
+        cacheModule,
+        localDictionaryModule,
+        localPhraseModule,
+        dictionaryRepositoryModule,
+        phraseRepositoryModule,
+        dataStoreModule,
+        playerModule,
+        fileManagerModule
+    )
+}

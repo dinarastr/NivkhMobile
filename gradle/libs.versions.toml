@@ -3,37 +3,37 @@ agp = "8.6.0"
 kotlin = "2.1.20"
 compose = "1.8.1"
 compose-compiler = "1.5.4"
-compose-material3 = "1.1.2"
-androidx-activityCompose = "1.8.2"
-resourcesGenerator = "0.23.0"
+compose-material3 = "1.3.2"
+androidx-activityCompose = "1.10.1"
 compose-multiplatform = "1.8.1"
-sqlDelightVersion = "2.0.0"
-koinVersion = "3.5.0"
-koinAndroidXCompose = "3.5.0"
-paging = "3.3.0-alpha02-0.4.0"
+sqlDelightVersion = "2.1.0"
+koin-bom = "4.0.4"
+paging = "3.3.0-alpha02-0.5.1"
 voyagerVersion = "1.0.0-rc10"
 imageLoaderVersion = "1.2.10"
 calfAdaptiveUiVersion = "0.2.0"
 
 splash = "1.0.1"
-dataStore = "1.0.0"
-coreKtx = "1.12.0"
+dataStore = "1.1.7"
+coreKtx = "1.16.0"
 
 
 [libraries]
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
+
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core"}
+koin-android = { module = "io.insert-koin:koin-android"}
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose"}
+koin-compose = { module = "io.insert-koin:koin-compose"}
 
 #multiplatform
 sqlDelightRuntime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelightVersion" }
 sqlDelightCoroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelightVersion" }
-koinCore = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
 pagingCommon = { module = "app.cash.paging:paging-common", version.ref = "paging" }
 pagingCompose = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
 voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
@@ -44,8 +44,6 @@ calfAdaptiveUi = { module = "com.mohamedrejeb.calf:calf-ui", version.ref = "calf
 
 #android
 sqlDelightAndroid = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
-koinAndroid = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
-koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidXCompose" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore"}
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 composeActivity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -58,7 +56,6 @@ sqlDelightNative = { module = "app.cash.sqldelight:native-driver", version.ref =
 multiplatform = [
     "sqlDelightRuntime",
     "sqlDelightCoroutines",
-    "koinCore",
     "pagingCommon",
     "pagingCompose",
     "voyagerNavigator",
@@ -77,4 +74,3 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightVersion" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
