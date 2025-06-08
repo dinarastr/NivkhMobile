@@ -29,9 +29,11 @@ fun DictionaryContent(
     onSearch: (String) -> Unit,
     onEmptySearch: () -> Unit,
     query: MutableState<TextFieldValue>,
+    modifier: Modifier = Modifier,
     additionalKeys: (@Composable () -> Unit)? = null,
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             LanguageBar(
                 startContent = startLanguageContent,
@@ -50,10 +52,7 @@ fun DictionaryContent(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 query = query,
                 onClearSearch = onEmptySearch,
-                onValueChanged = {
-                    query.value = query.value
-                    onSearch(it)
-                },
+                onValueChanged = onSearch,
                 hint = "Введите слово"
             )
             LazyColumn(

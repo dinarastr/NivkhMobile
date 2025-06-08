@@ -2,6 +2,7 @@ package ru.dinarastepina.nivkh.presentation.screens.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -18,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
@@ -40,14 +42,20 @@ object HomeScreen: Screen {
 
     @Composable
     override fun Content() {
-
         val vm = getScreenModel<HomeScreenVM>()
-
-
         val homeState by vm.startDestination
 
-        when (homeState) {
-            OnBoardingScreen.key -> {
+        when {
+            homeState.isEmpty() -> {
+                // Show loading state while determining destination
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    androidx.compose.material3.CircularProgressIndicator()
+                }
+            }
+            homeState == OnBoardingScreen.key -> {
                 Navigator(
                     screen = OnBoardingScreen
                 ) {
@@ -56,7 +64,7 @@ object HomeScreen: Screen {
                     }
                 }
             }
-            TabsScreen.key -> {
+            homeState == TabsScreen.key -> {
                 TabsContent()
             }
         }

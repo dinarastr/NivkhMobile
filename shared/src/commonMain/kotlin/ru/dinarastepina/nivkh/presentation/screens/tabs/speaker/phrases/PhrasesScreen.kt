@@ -3,7 +3,9 @@ package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -194,8 +196,11 @@ class PhrasesScreen(val topic: String): Screen {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            phrases.forEach { phrase ->
-                item (key = phrase.audio){
+            items(
+                count = phrases.size,
+                key = { index -> phrases[index].audio }
+            ) { index ->
+                val phrase = phrases[index]
                     PhraseCard(
                         phrase = phrase,
                         onShare = {
@@ -243,7 +248,6 @@ class PhrasesScreen(val topic: String): Screen {
                         isPlaying = selected.value == phrase && !isLoading.value,
                         isLoading = selected.value == phrase && isLoading.value,
                     )
-                }
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import app.cash.paging.compose.collectAsLazyPagingItems
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
@@ -14,6 +15,8 @@ import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.dinarastepina.nivkh.platform.hideKeyboardOnTap
+import ru.dinarastepina.nivkh.platform.rememberKeyboardManager
 import ru.dinarastepina.nivkh.presentation.screens.onboarding.OnBoardingVM
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDictionaryEvents
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.nivkh.NivkhDictionaryScreen
@@ -27,9 +30,9 @@ object RussianDictionaryScreen: Screen {
 
     @Composable
     override fun Content() {
-
         val vm = getScreenModel<RussianDictionaryVM>()
         val state by vm.state.collectAsState()
+        val keyboardManager = rememberKeyboardManager()
         val query = remember { mutableStateOf(TextFieldValue("")) }
         val navigator = LocalNavigator.currentOrThrow
 
@@ -44,6 +47,7 @@ object RussianDictionaryScreen: Screen {
         )
 
         DictionaryContent(
+            modifier = Modifier.hideKeyboardOnTap(keyboardManager),
             startLanguageContent = {
                 LanguageChip(
                     title = "русский"

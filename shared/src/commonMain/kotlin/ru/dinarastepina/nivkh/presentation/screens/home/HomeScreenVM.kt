@@ -21,12 +21,17 @@ class HomeScreenVM(
 
     init {
         screenModelScope.launch {
-            repository.readOnBoardingState().collect { completed ->
-                if (completed) {
-                    _startDestination.value = TabsScreen.key
-                } else {
-                    _startDestination.value = OnBoardingScreen.key
+            try {
+                repository.readOnBoardingState().collect { completed ->
+                    _startDestination.value = if (completed) {
+                        TabsScreen.key
+                    } else {
+                        OnBoardingScreen.key
+                    }
                 }
+            } catch (e: Exception) {
+                // Fallback to onboarding in case of error
+                _startDestination.value = OnBoardingScreen.key
             }
         }
     }

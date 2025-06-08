@@ -33,13 +33,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
+import ru.dinarastepina.nivkh.platform.hideKeyboardOnTap
+import ru.dinarastepina.nivkh.platform.rememberKeyboardManager
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 import ru.dinarastepina.nivkh.presentation.navigation.BackHandler
 import ru.dinarastepina.nivkh.presentation.navigation.OnHomePressed
@@ -56,6 +57,7 @@ object SearchScreen : Screen {
     override fun Content() {
         val searchVM = getScreenModel<SearchViewModel>()
         val searchState by searchVM.state.collectAsState()
+        val keyboardManager = rememberKeyboardManager()
 
         val selected = remember { mutableStateOf<Phrase?>(null) }
         val navigator = LocalNavigator.currentOrThrow
@@ -85,6 +87,7 @@ object SearchScreen : Screen {
         )
 
         SearchResult(
+            modifier = Modifier.hideKeyboardOnTap(keyboardManager),
             selected = selected,
             state = searchState,
             startAudio = {
@@ -125,11 +128,13 @@ object SearchScreen : Screen {
         downloadFile: (String) -> Unit,
         onValueChanged: (String) -> Unit,
         onClearSearch: () -> Unit,
-        onShare: (Phrase) -> Unit
+        onShare: (Phrase) -> Unit,
+        modifier: Modifier = Modifier
     ) {
 
         val navigator = LocalNavigator.currentOrThrow
         Scaffold(
+            modifier = modifier,
             topBar = {
                 UdegeSearchBar(
                     modifier = Modifier.padding(end = 16.dp),
@@ -198,8 +203,11 @@ object SearchScreen : Screen {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            phrases.forEach { phrase ->
-                item(key = phrase.audio) {
+            items(
+                count = phrases.size,
+                key = { index -> phrases[index].audio }
+            ) { index ->
+                val phrase = phrases[index]
                     PhraseCard(
                         phrase = phrase,
                         onShare = {
@@ -243,7 +251,6 @@ object SearchScreen : Screen {
                         isPlaying = selected.value == phrase && !isLoading.value,
                         isLoading = selected.value == phrase && isLoading.value,
                     )
-                }
             }
         }
     }

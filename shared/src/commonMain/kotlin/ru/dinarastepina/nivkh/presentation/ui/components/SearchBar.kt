@@ -17,13 +17,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 
 @Composable
 fun NivkhSearchBar(
@@ -32,8 +38,21 @@ fun NivkhSearchBar(
     query: MutableState<TextFieldValue>,
     onValueChanged: (String) -> Unit,
     onClearSearch: () -> Unit,
-    onNavigateBack: (() -> Unit)? = null
+    onNavigateBack: (() -> Unit)? = null,
+    debounceTimeMs: Long = 500L
 ) {
+    // Debouncing logic
+    var searchText by remember { mutableStateOf(query.value.text) }
+    
+    LaunchedEffect(searchText) {
+        delay(debounceTimeMs)
+        if (searchText.isNotBlank()) {
+            onValueChanged(searchText)
+        } else {
+            onClearSearch()
+        }
+    }
+    
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -76,6 +95,7 @@ fun NivkhSearchBar(
                     Icon(
                         modifier = Modifier.clickable {
                             query.value = TextFieldValue("")
+                            searchText = ""
                             onClearSearch()
                         },
                         imageVector = Icons.Filled.Close,
@@ -84,13 +104,9 @@ fun NivkhSearchBar(
                 }
             },
             value = query.value,
-            onValueChange = {
-                query.value = it
-                if (it.text.isNotBlank()) {
-                    onValueChanged(it.text)
-                } else {
-                    onClearSearch()
-                }
+            onValueChange = { newValue ->
+                query.value = newValue
+                searchText = newValue.text
             }
         )
     }

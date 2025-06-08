@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import app.cash.paging.compose.LazyPagingItems
@@ -16,6 +17,8 @@ import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import ru.dinarastepina.nivkh.platform.hideKeyboardOnTap
+import ru.dinarastepina.nivkh.platform.rememberKeyboardManager
 import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.screens.onboarding.OnBoardingVM
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian.RussianDictionaryScreen
@@ -32,6 +35,7 @@ object NivkhDictionaryScreen : Screen {
     override fun Content() {
         val vm = getScreenModel<NivkhDictionaryVM>()
         val state by vm.state.collectAsState()
+        val keyboardManager = rememberKeyboardManager()
 
         val query = remember { mutableStateOf(TextFieldValue()) }
 
@@ -48,6 +52,7 @@ object NivkhDictionaryScreen : Screen {
         )
 
         DictionaryContent(
+            modifier = Modifier.hideKeyboardOnTap(keyboardManager),
             startLanguageContent = {
                 LanguageChip(
                     title = "нивхский"
