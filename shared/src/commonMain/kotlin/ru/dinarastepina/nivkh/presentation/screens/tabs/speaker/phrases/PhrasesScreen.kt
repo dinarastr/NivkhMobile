@@ -29,6 +29,7 @@ import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mohamedrejeb.calf.ui.progress.AdaptiveCircularProgressIndicator
@@ -45,7 +46,7 @@ class PhrasesScreen(val topic: String): Screen {
     override val key: ScreenKey = Tags.PHRASES_SCREEN_TITLE.tag
     @Composable
     override fun Content() {
-        val phrasesVM = rememberScreenModel { PhrasesVM() }
+        val phrasesVM = getScreenModel<PhrasesVM>()
         val phrasesState by phrasesVM.state.collectAsState()
         val selected = remember { mutableStateOf<Phrase?>(null) }
 

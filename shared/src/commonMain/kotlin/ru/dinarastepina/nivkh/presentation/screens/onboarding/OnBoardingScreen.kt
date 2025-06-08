@@ -29,11 +29,11 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import nivkhmobile.shared.generated.resources.Res
 import nivkhmobile.shared.generated.resources.allDrawableResources
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.OnBoardingPage
 import ru.dinarastepina.nivkh.presentation.screens.home.TabsScreen
@@ -45,7 +45,7 @@ object OnBoardingScreen : Screen {
 
     @Composable
     override fun Content() {
-        val vm = rememberScreenModel { OnBoardingVM() }
+        val vm = getScreenModel<OnBoardingVM>()
 
         OnBoardingContent(
             onFinish = {

@@ -27,6 +27,7 @@ val commonModules = module {
         localPhraseModule,
         dictionaryRepositoryModule,
         phraseRepositoryModule,
+        viewModelsModule,
         dataStoreModule,
         playerModule,
         fileManagerModule

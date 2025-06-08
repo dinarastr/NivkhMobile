@@ -9,7 +9,8 @@ compose-multiplatform = "1.8.1"
 sqlDelightVersion = "2.1.0"
 koin-bom = "4.0.4"
 paging = "3.3.0-alpha02-0.5.1"
-voyagerVersion = "1.0.0-rc10"
+voyagerKoin = "1.0.1"
+voyagerVersion = "1.0.1"
 imageLoaderVersion = "1.2.10"
 calfAdaptiveUiVersion = "0.2.0"
 
@@ -36,6 +37,8 @@ sqlDelightRuntime = { module = "app.cash.sqldelight:runtime", version.ref = "sql
 sqlDelightCoroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelightVersion" }
 pagingCommon = { module = "app.cash.paging:paging-common", version.ref = "paging" }
 pagingCompose = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
+voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyagerKoin" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerVersion" }
 voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
 voyagerTransitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 voyagerTabs = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }

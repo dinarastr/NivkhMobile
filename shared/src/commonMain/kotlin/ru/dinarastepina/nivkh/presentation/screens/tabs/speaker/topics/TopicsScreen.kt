@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import cafe.adriel.voyager.koin.getScreenModel
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,7 +43,7 @@ object TopicsScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
-        val topicsVm = rememberScreenModel { TopicsVM() }
+        val topicsVm = getScreenModel<TopicsVM>()
         val topicsState by topicsVm.state.collectAsState()
 
         LifecycleEffect(

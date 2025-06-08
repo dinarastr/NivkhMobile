@@ -1,26 +1,24 @@
 package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases
 
-import cafe.adriel.voyager.core.model.coroutineScope
+import cafe.adriel.voyager.core.model.screenModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import ru.dinarastepina.nivkh.domain.downloader.FileManager
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 import ru.dinarastepina.nivkh.presentation.base.BaseViewModel
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
-class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
+class PhrasesVM(
+    private val repository: IPhrasesRepository,
+    private val mediaPlayerController: MediaPlayerController,
+    private val fileManager: FileManager
+): BaseViewModel<PhrasesState, PhrasesEvents>(
     initialState = PhrasesState.Loading
-), KoinComponent {
-
-    private val repository: IPhrasesRepository by inject()
-    private val mediaPlayerController: MediaPlayerController by inject()
-    private val fileManager: FileManager by inject()
+) {
 
     override fun onEvent(event: PhrasesEvents) {
         when (event) {
@@ -38,7 +36,7 @@ class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
     }
 
     private fun loadPhrases(topic: String) {
-        coroutineScope.launch(Dispatchers.IO) {
+        screenModelScope.launch(Dispatchers.IO) {
                  mutableState.update {
                         PhrasesState.LoadedPhrases(
                             phrases = repository.getPhrasesByTopic(topic),
@@ -75,7 +73,7 @@ class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
     }
 
     fun downloadFile(url: String) {
-        coroutineScope.launch(Dispatchers.IO) {
+        screenModelScope.launch(Dispatchers.IO) {
             fileManager.downloadFile(url)
         }
     }
@@ -90,6 +88,6 @@ class PhrasesVM: BaseViewModel<PhrasesState, PhrasesEvents>(
 
     override fun onDispose() {
         super.onDispose()
-        coroutineScope.cancel()
+        screenModelScope.cancel()
     }
 }

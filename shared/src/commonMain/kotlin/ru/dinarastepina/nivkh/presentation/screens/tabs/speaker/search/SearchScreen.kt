@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
@@ -53,9 +54,7 @@ object SearchScreen : Screen {
 
     @Composable
     override fun Content() {
-        val searchVM = rememberScreenModel {
-            SearchViewModel()
-        }
+        val searchVM = getScreenModel<SearchViewModel>()
         val searchState by searchVM.state.collectAsState()
 
         val selected = remember { mutableStateOf<Phrase?>(null) }

@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
@@ -40,7 +41,7 @@ object HomeScreen: Screen {
     @Composable
     override fun Content() {
 
-        val vm = rememberScreenModel { HomeScreenVM() }
+        val vm = getScreenModel<HomeScreenVM>()
 
 
         val homeState by vm.startDestination

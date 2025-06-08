@@ -13,9 +13,11 @@ import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.dinarastepina.nivkh.presentation.models.Article
+import ru.dinarastepina.nivkh.presentation.screens.onboarding.OnBoardingVM
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.russian.RussianDictionaryScreen
 import ru.dinarastepina.nivkh.presentation.ui.components.DictionaryContent
 import ru.dinarastepina.nivkh.presentation.ui.components.KeyBoardDropDown
@@ -28,7 +30,7 @@ object NivkhDictionaryScreen : Screen {
 
     @Composable
     override fun Content() {
-        val vm = rememberScreenModel { NivkhDictionaryVM() }
+        val vm = getScreenModel<NivkhDictionaryVM>()
         val state by vm.state.collectAsState()
 
         val query = remember { mutableStateOf(TextFieldValue()) }

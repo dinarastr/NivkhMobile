@@ -38,6 +38,9 @@ kotlin {
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.voyager.screenmodel)
+            implementation(libs.voyager.koin)
+
         }
         androidMain.dependencies {
             implementation(libs.compose.runtime)
