@@ -9,5 +9,5 @@ import ru.dinarastepina.database.NivkhDatabase
 internal expect val cacheModule : Module
 
 interface SqlDriverFactory {
-     suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver
+     fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver
 }

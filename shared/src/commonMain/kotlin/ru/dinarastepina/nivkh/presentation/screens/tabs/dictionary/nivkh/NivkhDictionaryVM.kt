@@ -14,8 +14,11 @@ import ru.dinarastepina.nivkh.presentation.base.Events
 import ru.dinarastepina.nivkh.presentation.models.Article
 import ru.dinarastepina.nivkh.presentation.models.toArticle
 import ru.dinarastepina.nivkh.data.paging.NivkhPagingSource
+import ru.dinarastepina.nivkh.domain.repositories.IDictionaryRepository
 
-class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState, NivkhDictionaryEvents>(
+class NivkhDictionaryVM(
+    private val repository: IDictionaryRepository
+) : BaseViewModel<NivkhDictionaryState, NivkhDictionaryEvents>(
     initialState = NivkhDictionaryState.LoadedState(
         "",
         flowOf(PagingData.empty())
@@ -35,7 +38,7 @@ class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState, NivkhDictionaryEve
             "As SqlDelight uses offset based pagination, an elegant PagingSource implementation requires each page to be of equal size."
         }
         Pager(pagingConfig) {
-            NivkhPagingSource("")
+            NivkhPagingSource("", repository)
         }
     }
 
@@ -45,7 +48,7 @@ class NivkhDictionaryVM : BaseViewModel<NivkhDictionaryState, NivkhDictionaryEve
             "As SqlDelight uses offset based pagination, an elegant PagingSource implementation requires each page to be of equal size."
         }
         Pager(pagingConfig) {
-            NivkhPagingSource(query)
+            NivkhPagingSource(query, repository)
         }
     }
 

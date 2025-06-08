@@ -23,6 +23,7 @@ val commonModules = module {
     includes(
         appModule(),
         cacheModule,
+        databaseModule,
         localDictionaryModule,
         localPhraseModule,
         dictionaryRepositoryModule,

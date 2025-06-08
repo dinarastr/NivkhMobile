@@ -1,21 +1,15 @@
 package ru.dinarastepina.nivkh.data.local
 
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import ru.dinarastepina.database.NivkhDatabase
 import ru.dinarastepina.nivkh.data.models.NivkhWord
 import ru.dinarastepina.nivkh.data.models.RussianWord
 
-class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
-
-    private val db: SqlDriverFactory by inject()
+class LocalDataSourceImpl(
+    private val database: NivkhDatabase
+): DictionaryDataSource {
 
     override suspend fun getAllNivkhWords(limit: Int, offset: Int): List<NivkhWord> {
-        val ques = NivkhDatabase(
-            db.getDriver(NivkhDatabase.Schema,
-                "nivkh.db")).nivkhQueries
-
-        return ques
+        return database.nivkhQueries
             .selectAllNivkhWords(
                 limit.toLong(),
                 offset.toLong()
@@ -36,8 +30,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
         offset: Int,
         query: String
     ): List<Long> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
-        return ques
+        return database.nivkhQueries
             .searchNivkhTranslations(
                 query,
                 limit.toLong(),
@@ -49,8 +42,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
     override suspend fun searchNivkhWords(
         ids: List<Long>
     ): List<NivkhWord> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
-        return ques
+        return database.nivkhQueries
             .searchNivkhWords(
                 ids,
             )
@@ -65,8 +57,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
     }
 
     override suspend fun getAllRussianWords(limit: Int, offset: Int): List<RussianWord> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
-        return ques
+        return database.nivkhQueries
             .selectAllRussianWords(
                 limit.toLong(),
                 offset.toLong()
@@ -87,8 +78,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
         offset: Int,
         query: String
     ): List<Long> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
-        return ques
+        return database.nivkhQueries
             .searchRussianTranslations(
                 query,
                 limit.toLong(),
@@ -100,8 +90,7 @@ class LocalDataSourceImpl: DictionaryDataSource, KoinComponent {
     override suspend fun searchRussianWords(
         ids: List<Long>
     ): List<RussianWord> {
-        val ques = NivkhDatabase(db.getDriver(NivkhDatabase.Schema, "nivkh.db")).nivkhQueries
-        return ques
+        return database.nivkhQueries
             .searchRussianWords(
                 ids,
             )

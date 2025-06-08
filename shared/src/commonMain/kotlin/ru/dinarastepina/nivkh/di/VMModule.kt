@@ -12,8 +12,8 @@ import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.topics.TopicsVM
 val viewModelsModule = module {
     factory { HomeScreenVM(get()) }
     factory { OnBoardingVM(get()) }
-    factory { NivkhDictionaryVM() }
-    factory { RussianDictionaryVM() }
+    factory { NivkhDictionaryVM(get()) }
+    factory { RussianDictionaryVM(get()) }
     factory { PhrasesVM(get(), get(), get()) }
     factory { SearchViewModel(get(), get(), get()) }
     factory { TopicsVM(get()) }

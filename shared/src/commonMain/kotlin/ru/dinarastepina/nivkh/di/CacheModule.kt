@@ -7,9 +7,9 @@ import ru.dinarastepina.nivkh.data.local.PhrasesDataSource
 import ru.dinarastepina.nivkh.data.local.PhrasesDataSourceImpl
 
 val localDictionaryModule = module {
-    single<DictionaryDataSource> { LocalDataSourceImpl() }
+    single<DictionaryDataSource> { LocalDataSourceImpl(get()) }
 }
 
 val localPhraseModule = module {
-    single<PhrasesDataSource> { PhrasesDataSourceImpl() }
+    single<PhrasesDataSource> { PhrasesDataSourceImpl(get()) }
 }

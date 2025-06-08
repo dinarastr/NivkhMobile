@@ -7,6 +7,7 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import nivkhmobile.shared.generated.resources.Res
 import org.koin.core.module.Module
@@ -21,18 +22,20 @@ internal actual val cacheModule: Module = module {
     singleOf(::AndroidSqlDriverFactory) bind SqlDriverFactory::class
 }
 class AndroidSqlDriverFactory(private val context: Context): SqlDriverFactory {
-    override suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
+    override fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
         val database: File = context.getDatabasePath(filename)
 
         if (!database.exists()) {
-            val inputStream = Res.readBytes("files/source.db").inputStream()
-            val outputStream = withContext(Dispatchers.IO) {
-                FileOutputStream(database.absolutePath)
-            }
+            runBlocking {
+                val inputStream = Res.readBytes("files/source.db").inputStream()
+                val outputStream = withContext(Dispatchers.IO) {
+                    FileOutputStream(database.absolutePath)
+                }
 
-            inputStream.use { input: InputStream ->
-                outputStream.use { output: FileOutputStream ->
-                    input.copyTo(output)
+                inputStream.use { input: InputStream ->
+                    outputStream.use { output: FileOutputStream ->
+                        input.copyTo(output)
+                    }
                 }
             }
         }

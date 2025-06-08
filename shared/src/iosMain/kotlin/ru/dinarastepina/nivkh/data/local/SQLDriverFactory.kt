@@ -13,6 +13,7 @@ import kotlinx.cinterop.convert
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.usePinned
+import kotlinx.coroutines.runBlocking
 import nivkhmobile.shared.generated.resources.Res
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -34,7 +35,7 @@ internal actual val cacheModule: Module = module {
 
 class IosSqlDriverFactory : SqlDriverFactory {
     @OptIn(ExperimentalForeignApi::class)
-    override suspend fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
+    override fun getDriver(schema: SqlSchema<QueryResult.AsyncValue<Unit>>, filename: String): SqlDriver {
         val fileManager: NSFileManager = NSFileManager.defaultManager()
         val databaseCache = NSSearchPathForDirectoriesInDomains(
             directory = NSApplicationSupportDirectory,
@@ -63,7 +64,7 @@ class IosSqlDriverFactory : SqlDriverFactory {
 
                 val copySuccess = fileManager.createFileAtPath(
                     path = targetDBPath,
-                    contents = Res.readBytes("files/source.db").toNSData(),
+                    contents = runBlocking { Res.readBytes("files/source.db") }.toNSData(),
                     attributes = null
                 )
 
@@ -77,7 +78,7 @@ class IosSqlDriverFactory : SqlDriverFactory {
     }
 }
 
-@OptIn(ExperimentalForeignApi::class)
+@OptIn(ExperimentalForeignApi::class, kotlinx.cinterop.BetaInteropApi::class)
 fun ByteArray.toNSData() = this.usePinned {
     NSData.create(bytes = it.addressOf(0), length = this.size.convert())
 }

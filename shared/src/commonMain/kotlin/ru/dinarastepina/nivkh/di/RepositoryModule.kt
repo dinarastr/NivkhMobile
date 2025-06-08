@@ -8,9 +8,9 @@ import ru.dinarastepina.nivkh.domain.repositories.IDictionaryRepository
 import ru.dinarastepina.nivkh.domain.repositories.IPhrasesRepository
 
 val dictionaryRepositoryModule: Module = module {
-    single<IDictionaryRepository> { DictionaryRepositoryImpl() }
+    single<IDictionaryRepository> { DictionaryRepositoryImpl(get()) }
 }
 
 val phraseRepositoryModule: Module = module {
-    single<IPhrasesRepository> { PhrasesRepositoryImpl() }
+    single<IPhrasesRepository> { PhrasesRepositoryImpl(get()) }
 }
