@@ -81,7 +81,7 @@ object NivkhDictionaryScreen : Screen {
             items = items,
             additionalKeys = {
                 KeyBoardDropDown(
-                    list = listOf("ӄ", "ӻ", "ғ", "ӽ", "ӿ", "р̌", "'"), onClick = { s ->
+                    list = listOf("ӄ", "ӻ", "ғ", "ӽ", "ӿ", "р̌", "ӈ", "'"), onClick = { s ->
                         query.value = TextFieldValue(
                             text = query.value.text.plus(s),
                             selection = TextRange(query.value.text.plus(s).length)

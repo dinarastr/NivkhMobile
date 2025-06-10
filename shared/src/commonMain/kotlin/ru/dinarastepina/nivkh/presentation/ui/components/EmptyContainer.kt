@@ -14,11 +14,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import nivkhmobile.shared.generated.resources.Res
 import nivkhmobile.shared.generated.resources.ic_empty_search
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun EmptyContainer(
     modifier: Modifier = Modifier
