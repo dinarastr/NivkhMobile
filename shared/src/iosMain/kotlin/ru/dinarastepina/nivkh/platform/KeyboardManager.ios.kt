@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIApplication
 import platform.UIKit.endEditing
 

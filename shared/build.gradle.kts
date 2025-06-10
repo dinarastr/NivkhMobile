@@ -10,7 +10,20 @@ plugins {
 
 kotlin {
 
-    androidTarget()
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "11"
+                freeCompilerArgs += listOf(
+                    "-opt-in=kotlin.RequiresOptIn",
+                    "-Xjvm-default=all",
+                    "-Xno-param-assertions",
+                    "-Xno-call-assertions",
+                    "-Xno-receiver-assertions"
+                )
+            }
+        }
+    }
     
     listOf(
         iosX64(),
@@ -23,6 +36,12 @@ kotlin {
             
             // Add SQLite linker option
             linkerOpts.add("-lsqlite3")
+            
+            // Optimize for release
+            freeCompilerArgs += listOf(
+                "-Xdisable-phases=VerifyBitcode",
+                "-Xlazy-ir-for-caches=disable"
+            )
         }
     }
 
@@ -77,6 +96,13 @@ android {
     }
     kotlin {
         jvmToolchain(11)
+    }
+    
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            consumerProguardFiles("consumer-rules.pro")
+        }
     }
 }
 
