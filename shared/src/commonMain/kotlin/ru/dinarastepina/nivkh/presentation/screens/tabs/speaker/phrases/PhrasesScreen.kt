@@ -31,6 +31,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mohamedrejeb.calf.ui.progress.AdaptiveCircularProgressIndicator
 import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_arrow_back
 import nivkhmobile.shared.generated.resources.ic_forward
 import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
@@ -136,7 +137,7 @@ class PhrasesScreen(val topic: String): Screen {
                         })
                         {
                             Icon(
-                                painter = painterResource( Res.drawable.ic_forward),
+                                painter = painterResource( Res.drawable.ic_arrow_back),
                                 tint = MaterialTheme.colorScheme.onPrimary,
                                 contentDescription = null
                             )
