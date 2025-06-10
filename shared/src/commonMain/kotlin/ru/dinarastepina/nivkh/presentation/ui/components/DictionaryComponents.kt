@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CompareArrows
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import nivkhmobile.shared.generated.resources.Res
 import nivkhmobile.shared.generated.resources.allDrawableResources
+import nivkhmobile.shared.generated.resources.ic_arrow
+import nivkhmobile.shared.generated.resources.ic_double_arrow
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -50,7 +50,7 @@ fun LanguageBar(
             onClick = onChangeLanguageClick,
             content = {
                 Icon(
-                    imageVector = Icons.Default.CompareArrows,
+                    painter = painterResource(Res.drawable.ic_double_arrow),
                     tint = MaterialTheme.colorScheme.tertiary,
                     contentDescription = null
                 )

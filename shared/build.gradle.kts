@@ -32,7 +32,6 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.animation)
-            implementation(compose.materialIconsExtended)
             api(libs.bundles.multiplatform)
             implementation(compose.components.resources)
             implementation(project.dependencies.platform(libs.koin.bom))

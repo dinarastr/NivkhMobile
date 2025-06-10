@@ -9,11 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CloudDownload
-import androidx.compose.material.icons.outlined.PauseCircle
-import androidx.compose.material.icons.outlined.PlayCircle
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -25,6 +20,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_cloud_download
+import nivkhmobile.shared.generated.resources.ic_pause
+import nivkhmobile.shared.generated.resources.ic_play
+import nivkhmobile.shared.generated.resources.ic_send
+import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.Phrase
 
 @Composable
@@ -46,7 +47,7 @@ fun PhraseCard(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = phrase.nivkh.orEmpty(),
+                    text = phrase.nivkh,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = MaterialTheme.colorScheme.onBackground
                     )
@@ -72,9 +73,9 @@ fun PhraseCard(
                         }) {
                             Icon(
                                 when {
-                                    isLoading -> Icons.Outlined.CloudDownload
-                                    isPlaying -> Icons.Outlined.PauseCircle
-                                    else -> Icons.Outlined.PlayCircle
+                                    isLoading -> painterResource(Res.drawable.ic_cloud_download)
+                                    isPlaying -> painterResource(Res.drawable.ic_pause)
+                                    else -> painterResource(Res.drawable.ic_play)
                                 },
                                 tint = MaterialTheme.colorScheme.secondary,
                                 contentDescription = "start"
@@ -85,7 +86,7 @@ fun PhraseCard(
                         onShare(phrase)
                     }) {
                         Icon(
-                            Icons.Outlined.Share,
+                            painter = painterResource(Res.drawable.ic_send),
                             tint = MaterialTheme.colorScheme.secondary,
                             contentDescription = "start"
                         )
