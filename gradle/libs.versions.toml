@@ -11,7 +11,8 @@ koin-bom = "4.0.4"
 paging = "3.3.0-alpha02-0.5.1"
 voyagerKoin = "1.0.1"
 voyagerVersion = "1.0.1"
-imageLoaderVersion = "1.2.10"
+coil = "3.2.0"
+ktor = "3.0.1"
 calfAdaptiveUiVersion = "0.2.0"
 
 splash = "1.0.1"
@@ -42,7 +43,14 @@ voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", vers
 voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
 voyagerTransitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 voyagerTabs = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
-imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoaderVersion"}
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+
+# Ktor engines for Coil network support
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 calfAdaptiveUi = { module = "com.mohamedrejeb.calf:calf-ui", version.ref = "calfAdaptiveUiVersion" }
 
 #android
@@ -64,7 +72,7 @@ multiplatform = [
     "voyagerNavigator",
     "voyagerTransitions",
     "voyagerTabs",
-    "imageLoader",
+    "coil-compose",
     "calfAdaptiveUi"
 ]
 

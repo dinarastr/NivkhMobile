@@ -40,6 +40,9 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.voyager.screenmodel)
             implementation(libs.voyager.koin)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
+
 
         }
         androidMain.dependencies {
@@ -48,10 +51,12 @@ kotlin {
             implementation(libs.sqlDelightAndroid)
             implementation(libs.datastore)
             implementation(libs.coreKtx)
+            implementation(libs.ktor.client.android)
         }
 
         iosMain.dependencies {
             implementation(libs.sqlDelightNative)
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
