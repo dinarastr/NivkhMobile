@@ -3,13 +3,9 @@ package ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,13 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mohamedrejeb.calf.ui.progress.AdaptiveCircularProgressIndicator
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_forward
+import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerListener
 import ru.dinarastepina.nivkh.presentation.models.Phrase
@@ -138,7 +136,7 @@ class PhrasesScreen(val topic: String): Screen {
                         })
                         {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                painter = painterResource( Res.drawable.ic_forward),
                                 tint = MaterialTheme.colorScheme.onPrimary,
                                 contentDescription = null
                             )

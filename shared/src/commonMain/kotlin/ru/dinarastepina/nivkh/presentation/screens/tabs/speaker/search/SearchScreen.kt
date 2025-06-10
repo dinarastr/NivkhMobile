@@ -11,10 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +34,11 @@ import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_arrow_back
+import nivkhmobile.shared.generated.resources.ic_clear
+import nivkhmobile.shared.generated.resources.ic_search
+import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.domain.player.MediaPlayerController
 import ru.dinarastepina.nivkh.platform.hideKeyboardOnTap
 import ru.dinarastepina.nivkh.platform.rememberKeyboardManager
@@ -275,7 +276,7 @@ fun UdegeSearchBar(
                     it.invoke()
                 }
             ) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
+                Icon(painter = painterResource(Res.drawable.ic_arrow_back), contentDescription = null)
             }
         }
         TextField(
@@ -295,7 +296,7 @@ fun UdegeSearchBar(
             ),
             maxLines = 1,
             leadingIcon = {
-                Icon(Icons.Filled.Search, contentDescription = null)
+                Icon(painter = painterResource(Res.drawable.ic_search), contentDescription = null)
             },
             placeholder = {
                 Text(hint)
@@ -309,7 +310,7 @@ fun UdegeSearchBar(
                             query.value = ""
                             onClearSearch()
                         },
-                        imageVector = Icons.Filled.Close,
+                        painter = painterResource(Res.drawable.ic_clear),
                         contentDescription = null
                     )
                 }

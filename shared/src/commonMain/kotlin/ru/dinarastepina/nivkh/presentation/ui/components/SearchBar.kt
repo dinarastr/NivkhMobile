@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -19,18 +15,23 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_arrow_back
+import nivkhmobile.shared.generated.resources.ic_clear
+import nivkhmobile.shared.generated.resources.ic_search
+import org.jetbrains.compose.resources.painterResource
 
+@OptIn(FlowPreview::class)
 @Composable
 fun NivkhSearchBar(
     hint: String,
@@ -41,18 +42,19 @@ fun NivkhSearchBar(
     onNavigateBack: (() -> Unit)? = null,
     debounceTimeMs: Long = 500L
 ) {
-    // Debouncing logic
-    var searchText by remember { mutableStateOf(query.value.text) }
-    
-    LaunchedEffect(searchText) {
-        delay(debounceTimeMs)
-        if (searchText.isNotBlank()) {
-            onValueChanged(searchText)
-        } else {
-            onClearSearch()
-        }
+    LaunchedEffect(query) {
+        snapshotFlow { query.value.text }
+            .debounce(debounceTimeMs)
+            .distinctUntilChanged()
+            .collect { searchText ->
+                if (searchText.isNotBlank()) {
+                    onValueChanged(searchText)
+                } else {
+                    onClearSearch()
+                }
+            }
     }
-    
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -63,7 +65,10 @@ fun NivkhSearchBar(
                     it.invoke()
                 }
             ) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
+                Icon(
+                    painter = painterResource(Res.drawable.ic_arrow_back),
+                    contentDescription = null
+                )
             }
         }
         TextField(
@@ -83,7 +88,7 @@ fun NivkhSearchBar(
             ),
             maxLines = 1,
             leadingIcon = {
-                Icon(Icons.Filled.Search, contentDescription = null)
+                Icon(painter = painterResource(Res.drawable.ic_search), contentDescription = null)
             },
             placeholder = {
                 Text(hint)
@@ -95,10 +100,9 @@ fun NivkhSearchBar(
                     Icon(
                         modifier = Modifier.clickable {
                             query.value = TextFieldValue("")
-                            searchText = ""
                             onClearSearch()
                         },
-                        imageVector = Icons.Filled.Close,
+                        painter = painterResource(Res.drawable.ic_clear),
                         contentDescription = null
                     )
                 }
@@ -106,7 +110,6 @@ fun NivkhSearchBar(
             value = query.value,
             onValueChange = { newValue ->
                 query.value = newValue
-                searchText = newValue.text
             }
         )
     }

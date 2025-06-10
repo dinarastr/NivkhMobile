@@ -4,10 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -21,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
@@ -30,6 +26,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_info
+import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.screens.onboarding.OnBoardingScreen
 import ru.dinarastepina.nivkh.presentation.screens.tabs.dictionary.DictionaryTab
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.SpeakerTab
@@ -47,7 +46,6 @@ object HomeScreen: Screen {
 
         when {
             homeState.isEmpty() -> {
-                // Show loading state while determining destination
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -96,7 +94,7 @@ fun RowScope.InfoItem(
         selected = false,
         onClick = onClick,
         icon = {
-            Icon(Icons.Default.Info, contentDescription = null)
+            Icon(painter = painterResource(Res.drawable.ic_info), contentDescription = null)
         },
         label = {
             Text(

@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import cafe.adriel.voyager.koin.getScreenModel
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,11 +22,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import nivkhmobile.shared.generated.resources.Res
+import nivkhmobile.shared.generated.resources.ic_search
+import org.jetbrains.compose.resources.painterResource
 import ru.dinarastepina.nivkh.presentation.models.Topic
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.phrases.PhrasesScreen
 import ru.dinarastepina.nivkh.presentation.screens.tabs.speaker.search.SearchScreen
@@ -74,7 +74,7 @@ object TopicsScreen : Screen {
                                 navigator.push(SearchScreen)
                             }
                         ) {
-                            Icon(Icons.Filled.Search, contentDescription = null)
+                            Icon(painter = painterResource(Res.drawable.ic_search), contentDescription = null)
                         }
                     }
                 )
@@ -126,6 +126,5 @@ object TopicsScreen : Screen {
                 }
             }
         }
-
     }
 }
