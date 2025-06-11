@@ -6,6 +6,9 @@ import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import platform.AVFAudio.AVAudioSession
+import platform.AVFAudio.AVAudioSessionCategoryPlayback
+import platform.AVFAudio.setActive
 import platform.AVFoundation.AVPlayer
 import platform.AVFoundation.AVPlayerItemDidPlayToEndTimeNotification
 import platform.AVFoundation.AVPlayerItemNewAccessLogEntryNotification
@@ -29,7 +32,12 @@ import kotlin.native.ref.WeakReference
 internal actual val playerModule: Module = module {
     singleOf(::IOSMediaPlayerController) bind MediaPlayerController::class
 }
+
 class IOSMediaPlayerController : MediaPlayerController {
+
+    init {
+        configureAudioSession()
+    }
 
     private var player: AVPlayer? = null
         set(value) {
@@ -46,6 +54,17 @@ class IOSMediaPlayerController : MediaPlayerController {
     private fun checkReady() {
         if (player != null) {
             player?.play()
+        }
+    }
+
+    @OptIn(ExperimentalForeignApi::class)
+    private fun configureAudioSession() {
+        try {
+            AVAudioSession.sharedInstance()
+                .setCategory(AVAudioSessionCategoryPlayback, error = null)
+            AVAudioSession.sharedInstance().setActive(true, null)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
