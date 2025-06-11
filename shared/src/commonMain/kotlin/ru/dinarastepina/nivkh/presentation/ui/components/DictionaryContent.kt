@@ -1,7 +1,9 @@
 package ru.dinarastepina.nivkh.presentation.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
@@ -19,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import app.cash.paging.compose.LazyPagingItems
 import ru.dinarastepina.nivkh.presentation.models.Article
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DictionaryContent(
     startLanguageContent: @Composable () -> Unit,
@@ -55,43 +57,55 @@ fun DictionaryContent(
                 onValueChanged = onSearch,
                 hint = "Введите слово"
             )
-            LazyColumn(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = 16.dp
-                ).fillMaxWidth()
-            ) {
-                additionalKeys?.let { keys ->
-                    stickyHeader {
-                        keys()
-                    }
+            
+            // Show EmptyContainer when search results are empty
+            if (items.itemCount == 0 && query.value.text.isNotBlank()) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    EmptyContainer()
                 }
-                items(items.itemCount) { position ->
-                    val word = items[position]
-                    word?.let { article ->
-                        if (article.content.isNotBlank()) {
-                            SelectionContainer {
-                                when (article) {
-                                    is Article.Original -> Text(
-                                        text = article.content,
-                                        style = MaterialTheme.typography.headlineSmall.copy(
-                                            fontSize = 20.sp,
+            } else {
+                LazyColumn(
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 16.dp
+                    ).fillMaxWidth()
+                ) {
+                    additionalKeys?.let { keys ->
+                        stickyHeader {
+                            keys()
+                        }
+                    }
+                    items(items.itemCount) { position ->
+                        val word = items[position]
+                        word?.let { article ->
+                            if (article.content.isNotBlank()) {
+                                SelectionContainer {
+                                    when (article) {
+                                        is Article.Original -> Text(
+                                            text = article.content,
+                                            style = MaterialTheme.typography.headlineSmall.copy(
+                                                fontSize = 20.sp,
+                                            )
                                         )
-                                    )
 
-                                    is Article.Translation -> Text(
-                                        text = article.content
-                                    )
+                                        is Article.Translation -> Text(
+                                            text = article.content
+                                        )
 
-                                    is Article.Comment -> Text(
-                                        text = article.content,
-                                        style = MaterialTheme.typography.displaySmall
-                                    )
+                                        is Article.Comment -> Text(
+                                            text = article.content,
+                                            style = MaterialTheme.typography.displaySmall
+                                        )
 
-                                    is Article.Separator -> Text(
-                                        text = ""
-                                    )
+                                        is Article.Separator -> Text(
+                                            text = ""
+                                        )
+                                    }
                                 }
                             }
                         }
